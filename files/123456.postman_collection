@@ -1,0 +1,800 @@
+{
+	"info": {
+		"_postman_id": "64a39b1f-50d6-4e68-bc51-a8f6fcf56f89",
+		"name": "Stress testing (support)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14745191"
+	},
+	"item": [
+		{
+			"name": "Main scenario",
+			"item": [
+				{
+					"name": "LEGZO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.legzo.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 2, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.legzo.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"legzo",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LEGZO Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.legzo.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 2, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.legzo.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"legzo",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SOL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.sol.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 88, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.sol.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"sol",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SOL Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.sol.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 88, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.sol.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"sol",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FRESH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.fresh.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 61, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.fresh.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"fresh",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FRESH Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.fresh.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 61, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.fresh.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"fresh",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JET",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.jet.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 33, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.jet.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"jet",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JET Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json().data",
+									"pm.environment.set('room_id', jsonData.room_id)",
+									"",
+									"pm.sendRequest({",
+									"    url: \"https://dev.jet.kube.dev001.ru/support/api/v1/customers/room/\" + pm.response.json().data.room_id + \"/messages\",",
+									"    method: 'POST',",
+									"    header: {",
+									"        'Accept': 'application/json',",
+									"        'Content-Type': 'application/json',",
+									"        'X-Authorization': \"Bearer \" + pm.response.json().data.token",
+									"    },",
+									"    body: {",
+									"        mode: 'raw',",
+									"        raw: JSON.stringify({ ",
+									"            msg: \"test automation message\",",
+									"            sender_id: pm.response.json().data.user.id })",
+									"    }",
+									"}, function (err, res) {",
+									"    pm.test(\"Сообщение пользователь 1\", function () {",
+									"        pm.expect(res).to.have.status(200);",
+									"        pm.expect(res).to.have.property('code', 200);",
+									"    });",
+									"});",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// const md5Hash = CryptoJS.MD5(\"test_sup\" + Math.floor(Math.random()*1000)).toString();",
+									"const Hash = \"086fc4f8d110ec933b3590c9658ccd84\";",
+									"const md5Hash = Hash + Date.now()",
+									"// Установка хеша в переменную окружения (при необходимости)",
+									"pm.environment.set(\"md5Hash\", md5Hash);",
+									"// генерация MD5 ключа для авторизации и создания нового кастомера и новой комнаты",
+									"// отличается от стандартного подхода тем, что всегда создает новую комнату и новый токен, а не стучится в ранее созданную",
+									"",
+									"console.log(md5Hash)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"line\": 33, // test SOL group\n    \"key\": \"{{md5Hash}}\",\n    \"lang\": \"ru\"\n    // \"projectId\": 1\n    //\"key\": \"2aff5d04347174f3a5a296df4abbe65e\" \n}\n// раскоментировать значение, если необходимо работать в рамках одной комнаты без генерации новых кастомеров и комнат",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://dev.jet.kube.dev001.ru/support/api/v1/customers/signin",
+							"protocol": "https",
+							"host": [
+								"dev",
+								"jet",
+								"kube",
+								"dev001",
+								"ru"
+							],
+							"path": [
+								"support",
+								"api",
+								"v1",
+								"customers",
+								"signin"
+							],
+							"query": [
+								{
+									"key": "test",
+									"value": "test",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Использованные сценарии\n\n1. Создание комнаты → написание 2-х сообщений пользователем\n2. Создание комнаты → написание 1 сообщения польователем\n3. Создание комнаты → написание 1 сообщения пользователем → закрытие комнаты игроком\n    \n4. Получение комнат оператора → написание сообщения от оператора → закрытие комнаты (оператор 1 - 10)\n    \n\n**Настройки таймаутов**\n\n- archive_time_out - выставить на 2 минуты (через 2 минуты комната закрывается)\n- inactive_chat_time - отключить\n- transfer_chat_time - отключить\n- overloaded_duration_time - отключить\n    \n\nНагрузка  \n60 VU + 2 min ramp up\n\nДлительность\n\n10 минут"
+		}
+	]
+}

@@ -1,0 +1,85 @@
+import { setWorldConstructor } from '@cucumber/cucumber';
+import { devices, chromium } from 'playwright';
+
+const isMobile = process.env.DEVICE === 'mobile';
+const mobileDevice = devices['Nexus 6'];
+
+class World {
+  constructor({ attach }) {
+    this.mobileBrowser = null; // Экземпляр мобильного браузера
+    this.mobileContext = null; // Контекст мобильного браузера
+    this.mobilePage = null; // Вкладка мобильного браузера 
+    this.browser = null; // Экземпляр браузера
+    this.page = null; // Текущая вкладка
+    this.newPage = null; // Новая вкладка 
+    this.generatedMessage = ''; // Переменная для хранения сообщения
+    this.token = null; // Определение токена
+    this.requestHeaders = null; //Опреление заголовков
+    this.attach = attach; // Определение прикрепленных файлов для отчета
+  }
+
+  // Инициализация бразуера в мобильном разрешении (изменяется в завимисости от указанного устройства)
+  async openMobileBrowser() {
+    // Инициализация экземпляра браузера
+    this.mobileBrowser = await chromium.launch({ headless: false });
+    // Инициализация контекста браузера (передаем константу mobileDevice для мобильной версии)
+    this.mobileContext = await this.mobileBrowser.newContext({ 
+      ...mobileDevice 
+    });
+    // Инициализация страницы в браузере
+    this.mobilePage = await this.mobileContext.newPage();
+    this.page = this.mobilePage;
+  }
+
+  // Инициализация бразуера в разрешении 1366х768
+  async openWebBrowser() {
+    this.desktopBrowser = await chromium.launch({ headless: false });
+    this.desktopContext = await this.desktopBrowser.newContext({
+      viewport: { width: 1366, height: 768 }
+    });
+    this.desktopPage = await this.desktopContext.newPage();
+    this.page = this.desktopPage;
+    // не переключаемся сразу, можно вручную через шаг
+  }
+
+
+  // Открытие новой вкладки в текущем окне браузера
+  async openNewTab() {
+    const desktopContext = await this.browser.newContext(); // новый контекст
+    this.newPage = await desktopContext.newPage(); // новая веб-вкладка
+  }
+
+  //Закрытие вкладки в текущем окне браузера
+  async closeNewTab() {
+    if (this.newPage) {
+      await this.newPage.close(); // Закрываем открытую ранее вкладку
+      this.newPage = null;
+    }
+  }
+
+  // Переключение фокуса на мобильный браузер
+  switchToMobile() {
+    this.page = this.mobilePage;
+  }
+
+  // Переключение фокуса на веб браузер (1366х768)
+  switchToDesktop() {
+    this.page = this.desktopPage;
+  }
+
+  //Закрытие всех браузеров
+  async closeBrowsers() {
+    if (this.mobileBrowser) await this.mobileBrowser.close();
+    if (this.desktopBrowser) await this.desktopBrowser.close();
+  }
+
+  // Генерация тестового сообщения
+  generateMessage() {
+    const dateNow = new Date().getTime();
+    this.generatedMessage = `Тестовое сообщение ${dateNow}`;
+    global.generatedMessage = this.generatedMessage;
+    return this.generatedMessage;
+  }
+}
+
+setWorldConstructor(World);
