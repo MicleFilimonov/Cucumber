@@ -18,22 +18,26 @@
     "test:Legzo:web": "cross-env DEVICE=web npx cucumber-js features/legzoWEB.feature --format json:./cucumber-json/legzo-web.json",
     "test:Legzo:mobile:clean": "npm run clean:artifacts && npm run test:Legzo:mobile && npm run generate:report",
     "test:Legzo:web:clean": "npm run clean:artifacts && npm run test:Legzo:web && npm run generate:report",
-    "test:Legzo:all": "cmd /C \"npm run clean:artifacts && npm run test:Legzo:mobile & npm run test:Legzo:web\"",
-    "test:Legzo:all:report": "cmd /C \"npm run clean:artifacts && npm run test:Legzo:mobile & npm run test:Legzo:web && npm run generate:report\"",
+    "test:Legzo:all": "npm run test:Legzo:mobile & npm run test:Legzo:web",
+    "test:Legzo:all:clean": "cmd /C \"npm run clean:artifacts && npm run test:Legzo:mobile & npm run test:Legzo:web\"",
+    "test:Legzo:all:clean:report": "cmd /C \"npm run clean:artifacts && npm run test:Legzo:mobile & npm run test:Legzo:web && npm run generate:report\"",
 
 
     "test:Fresh:mobile": "cross-env DEVICE=mobile npx cucumber-js features/freshMOBILE.feature --format json:./cucumber-json/fresh-mobile.json",
     "test:Fresh:web": "cross-env DEVICE=web npx cucumber-js features/freshWEB.feature --format json:./cucumber-json/fresh-web.json",
     "test:Fresh:mobile:clean": "npm run clean:artifacts && npm run test:Fresh:mobile",
     "test:Fresh:web:clean": "npm run clean:artifacts && npm run test:Fresh:web",
-    "test:Fresh:all": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:mobile & npm run test:Fresh:web\"",
-    "test:Fresh:all:report": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:mobile & npm run test:Fresh:web && npm run generate:report\"",
+    "test:Fresh:all": "npm run test:Fresh:mobile & npm run test:Fresh:web",
+    "test:Fresh:all:clean": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:mobile & npm run test:Fresh:web\"",
+    "test:Fresh:all:clean:report": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:mobile & npm run test:Fresh:web && npm run generate:report\"",
 
     "test:Rox:mobile": "cross-env DEVICE=mobile npx cucumber-js features/roxMOBILE.feature --format json:./cucumber-json/rox-mobile.json",
     "test:Rox:web": "cross-env DEVICE=web npx cucumber-js features/roxWEB.feature --format json:./cucumber-json/rox-web.json",
     "test:Rox:mobile:clean": "npm run clean:artifacts && npm run test:Rox:mobile",
     "test:Rox:web:clean": "npm run clean:artifacts && npm run test:Rox:web",
-    "test:Rox:all": "cmd /C \"npm run clean:artifacts && npm run test:Rox:mobile & npm run test:Rox:web\"",
+    "test:Rox:all": "npm run test:Rox:mobile & npm run test:Rox:web",
+    "test:Rox:all:clean": "cmd /C \"npm run clean:artifacts && npm run test:Rox:mobile & npm run test:Rox:web\"",
+    "test:Rox:all:clean:report": "cmd /C \"npm run clean:artifacts && npm run test:Rox:mobile & npm run test:Rox:web && npm run generate:report\"",
 
     "test:All:all": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:all & npm run test:Legzo:all\"",
 
