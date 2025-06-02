@@ -12,7 +12,7 @@
 
     "generate:report": "node reports.js && start reports/index.html",
 
-    "clean:artifacts": "rimraf --glob \"cucumber-json/*.json\" \"screenshots/*\"",
+    "clean:artifacts": "rimraf --glob \"cucumber-json/*.json\" \"screenshots/*\" \"reports/features/*\"",
 
     "test:Legzo:mobile": "cross-env DEVICE=mobile npx cucumber-js features/legzoMOBILE.feature --format json:./cucumber-json/legzo-mobile.json",
     "test:Legzo:web": "cross-env DEVICE=web npx cucumber-js features/legzoWEB.feature --format json:./cucumber-json/legzo-web.json",
