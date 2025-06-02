@@ -35,7 +35,7 @@
     "test:Rox:web:clean": "npm run clean:artifacts && npm run test:Rox:web",
     "test:Rox:all": "cmd /C \"npm run clean:artifacts && npm run test:Rox:mobile & npm run test:Rox:web\"",
 
-    "test:All:all": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:all & npm run test:Legzo:all\"",
+    "test:All:all:clean": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:all & npm run test:Legzo:all\"",
 
 
     "test:devFileMob": "cross-env DEVICE=mobile npx cucumber-js features/devFile.feature --format json:./cucumber-json/dev-mobile.json",
