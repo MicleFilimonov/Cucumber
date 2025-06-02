@@ -32,13 +32,12 @@ export const siteLocator = {
         // FRESH
         'Меню поддержки FRESH': '(//*[@data-test="top-menu-support"])',
         'MBSS поддержка FRESH': '//*[@data-test="support-livechat"]',
-        'Депозит FRESH': '//*[@data-test="main_deposit"]',
-        'Вывод FRESH': '//*[@data-test="payment-modal__tab-is-cashout"]',
-        'Карта FRESH': '//*[@data-test="bank_card_list"]',
-        'Номер карты FRESH': '//*[@data-test="payment_field_card_number"]',
-        'Платежка FRESH': '//*[@data-test="868 - bank_card"]',
-        'Вывести FRESH': '//*[@data-test="button_next"]',
         'Закрыть модалку FRESH': '//*[@data-test="modal-close"]',
 
-
+        // ROX
+        'Активатор ROX': '(//*[@class="main-top-line__help-chat-inner"])',
+        'Боковое меню ROX': '(//*[@id="hamburger"])',
+        'Меню поддержки ROX': '(//*[@class="multipl-list multipl-list--support"])',
+        'MBSS поддержка ROX': '(//*[text()="связаться через чат"])',
+        'Закрыть модалку ROX': '//*[@data-test="modal-close"]'
 };
