@@ -15,7 +15,6 @@ export const siteLocator = {
         'Кнопка входа на сайте': '//*[@data-test="main_signin"]',
         'Поле почты на сайте': '//*[@data-test="email_field"]',
         'Поле пароля на сайте': '//*[@data-test="password-field"]',
-        'Поле пароля на сайте ROX': '//*[@data-test="passwd_field"]',
         'Кнопка авторизации на сайте': '//*[@data-test="auth-form-btn"]',
 
         // MOBILE
@@ -35,6 +34,7 @@ export const siteLocator = {
         'Закрыть модалку FRESH': '//*[@data-test="modal-close"]',
 
         // ROX
+        'Поле пароля на сайте ROX': '//*[@data-test="passwd_field"]',
         'Активатор ROX': '//*[@class="main-top-line__help-chat-inner"]',
         'Боковое меню ROX': '//*[@id="hamburger"]',
         'Меню информации ROX': '//*[text()="информация"]',
