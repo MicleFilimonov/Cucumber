@@ -35,7 +35,7 @@ export const siteLocator = {
 
         // ROX
         'Поле пароля на сайте ROX': '//*[@data-test="passwd_field"]',
-        'Активатор ROX': '//*[@class="main-top-line__help-chat-inner"]',
+        'Активатор ROX': '//div[@class="main-top-line__help-chat"]',
         'Боковое меню ROX': '//*[@id="hamburger"]',
         'Меню информации ROX': '//*[text()="информация"]',
         'Контакты ROX': '//li[@data-role="accordion-item"]//*[text()="контакты"]',
@@ -52,3 +52,4 @@ export const siteLocator = {
         'MBSS поддержка MARTIN': '//div[contains(@to,"/support/chat")]',
         'Закрыть модалку MARTIN': '//*[@data-test="modal-close"]'
 };
+
