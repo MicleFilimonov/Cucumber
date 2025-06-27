@@ -33,7 +33,7 @@ export const mbssLocator = {
         "Обязательный вопрос пре-формы Legzo": '//*[@data-message-id="38" and .//span[text()="Обязательный вопрос"]]',
         "Ответ 1 обязательной пре-формы Legzo": '//*[@data-message-id="38_0" and .//span[text()="Ответ 1"]]',
         "Ответ 2 обязательной пре-формы Legzo": '//*[@data-message-id="38_1" and .//span[text()="Ответ 2"]]',
-        "Не обязательный вопрос пре-формы Legzo": '//*[@data-message-id="39" and .//span[text()="Необязательный вопрос"]]',
+        "Не обязательный вопрос пре-формы Legzo": '//*[@data-message-id="39" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы Legzo": '//*[@data-message-id="39_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы Legzo": '//*[@data-message-id="39_1" and .//span[text()="Ответ 4"]]',
         
@@ -41,7 +41,7 @@ export const mbssLocator = {
         "Обязательный вопрос пре-формы FRESH": '//*[@data-message-id="40" and .//span[text()="Обязательный вопрос"]]',
         "Ответ 1 обязательной пре-формы FRESH": '//*[@data-message-id="40_0" and .//span[text()="Ответ 1"]]',
         "Ответ 2 обязательной пре-формы FRESH": '//*[@data-message-id="40_1" and .//span[text()="Ответ 2"]]',
-        "Не обязательный вопрос пре-формы FRESH": '//*[@data-message-id="41" and .//span[text()="Необязательный вопрос"]]',
+        "Не обязательный вопрос пре-формы FRESH": '//*[@data-message-id="41" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы FRESH": '//*[@data-message-id="41_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы FRESH": '//*[@data-message-id="41_1" and .//span[text()="Ответ 4"]]',
 
@@ -49,9 +49,17 @@ export const mbssLocator = {
         "Обязательный вопрос пре-формы ROX": '//*[@data-message-id="43" and .//span[text()="Обязательный вопрос"]]',
         "Ответ 1 обязательной пре-формы ROX": '//*[@data-message-id="43_0" and .//span[text()="Ответ 1"]]',
         "Ответ 2 обязательной пре-формы ROX": '//*[@data-message-id="43_1" and .//span[text()="Ответ 2"]]',
-        "Не обязательный вопрос пре-формы ROX": '//*[@data-message-id="44" and .//span[text()="Необязательный вопрос"]]',
+        "Не обязательный вопрос пре-формы ROX": '//*[@data-message-id="44" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы ROX": '//*[@data-message-id="44_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы ROX": '//*[@data-message-id="44_1" and .//span[text()="Ответ 4"]]',
+        
+        //MARTIN
+        "Обязательный вопрос пре-формы MARTIN": '//*[@data-message-id="45" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы MARTIN": '//*[@data-message-id="45_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы MARTIN": '//*[@data-message-id="45_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы MARTIN": '//*[@data-message-id="46" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы MARTIN": '//*[@data-message-id="46_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы MARTIN": '//*[@data-message-id="46_1" and .//span[text()="Ответ 4"]]',
 
 
         // Функциональные локаторы 

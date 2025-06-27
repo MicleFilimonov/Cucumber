@@ -35,6 +35,7 @@ export const url = {
         'FLAGMAN STAGE': process.env.FLAGMAN_STAGE,
         '1GO STAGE': process.env.ONEGO_STAGE,
         'IRWIN STAGE': process.env.IRWIN_STAGE,
+        'MARTIN STAGE': process.env.MARTIN_STAGE,
 
 
         'LEGZO PROD': process.env.LEGZO_PROD,

@@ -14,6 +14,7 @@ export const pageObjects = {
         'Оверлей кассы': '//div[@id="popup-deposit"]',
         'Закрыть кассу': '//div[@data-test="modal_close"]',
         'Закрыть кассу Fresh': '//div[@data-test="modal-close"]',
+        
         // локаторы MBSS
         'Виджет MBSS': '//*[@id="mbss-main-view"]',
         'Активатор': '//*[@class="activator-button"]',

@@ -39,6 +39,14 @@
     "test:Rox:all:clean": "cmd /C \"npm run clean:artifacts && npm run test:Rox:mobile & npm run test:Rox:web\"",
     "test:Rox:all:clean:report": "cmd /C \"npm run clean:artifacts && npm run test:Rox:mobile & npm run test:Rox:web && npm run generate:report\"",
 
+    "test:Martin:mobile": "cross-env DEVICE=mobile npx cucumber-js features/martinMOBILE.feature --format json:./cucumber-json/martin-mobile.json",
+    "test:Martin:web": "cross-env DEVICE=web npx cucumber-js features/martinWEB.feature --format json:./cucumber-json/martin-web.json",
+    "test:Martin:mobile:clean": "npm run clean:artifacts && npm run test:Martin:mobile",
+    "test:Martin:web:clean": "npm run clean:artifacts && npm run test:Martin:web",
+    "test:Martin:all": "npm run test:Martin:mobile & npm run test:Martin:web",
+    "test:Martin:all:clean": "cmd /C \"npm run clean:artifacts && npm run test:Martin:mobile & npm run test:Martin:web\"",
+    "test:Martin:all:clean:report": "cmd /C \"npm run clean:artifacts && npm run test:Martin:mobile & npm run test:Martin:web && npm run generate:report\"",
+
     "test:All:all": "cmd /C \"npm run clean:artifacts && npm run test:Fresh:all & npm run test:Legzo:all\"",
 
 

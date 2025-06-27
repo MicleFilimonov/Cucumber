@@ -82,7 +82,7 @@ When('Я ожидаю, что {string} {string}', async function (element, activ
 
 });
 
-// Ожидание отображения локатора с определенным тектсом
+// Ожидание отображения локатора с определенным текстом
 When('Я ожидаю, что {string} с текстом {string} {string}', async function (element, text, activity) {
 
     let locatorValue;
@@ -142,6 +142,13 @@ When('Я скроллю до {string}', async function (element) {
     const locator = this.page.locator(pageObjects.locator[element]);
 
     await locator.scrollIntoViewIfNeeded();
+
+});
+
+// Ручной скролл вниз 
+When('Я скроллю вниз', async function () {
+
+   await this.page.mouse.wheel(0, 5000);
 
 });
 
