@@ -3,10 +3,11 @@ export default {
     require: [
       './step-definitions/given.js',
       './step-definitions/when.js',
-      './step-definitions/then.js'
+      './step-definitions/then.js',
+      './step_definitions/**/*.js'
     ],
     backtrace: true,
-    headless: true,
+    headless: false,
     requireModule: [],
     dryRun: false,
     failFast: false,
@@ -19,9 +20,11 @@ export default {
     navigationTimeout: 40000, // Таймаут для операций навигации (page.goto)
     ignoreUndefinedDefinitions: false,
     format: [
-      'json:./cucumber-json/report.json', // Генерация JSON отчета
-      '@cucumber/html-formatter',
+      'summary',
+      'progress',
+      'node_modules/allure-cucumberjs'
     ],
+    publishQuiet: true,
     language: 'ru',
 
     formatOptions: {

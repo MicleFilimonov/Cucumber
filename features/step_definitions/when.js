@@ -3,26 +3,51 @@ import { pageObjects } from '../../page_objects/pageObjects.js';
 
 // запоняю элемент данными в определенном месте (из за общих названий локаторов)
 When('Я заполняю {string} данными {string}', async function (element, initValue) {
+   
+    const projectSpecificLocator = `${element} ${this.project}`
+    let locator 
 
-    const locator = pageObjects.locator[element];
+    if(pageObjects.locator[projectSpecificLocator]) {
+        locator = pageObjects.locator[projectSpecificLocator]
+    } else if (pageObjects.locator[element]) {
+        locator = pageObjects.locator[element]
+    } else {
+        throw new Error(`Локатор не найден для ${element} или ${projectSpecificLocator}`)
+    }
+
+
+    const projectSpecificKey = `${initValue} ${this.project}`;
     let givenValue
 
     if (initValue === 'Тестовое сообщение') {
         givenValue = this.generateMessage(); // Генерация сообщения  
-    } else if (pageObjects.value && pageObjects.value[initValue]) {
+    } 
+    else if (pageObjects.value[projectSpecificKey]) {
+        givenValue = pageObjects.value[projectSpecificKey]
+    }else if (pageObjects.value && pageObjects.value[initValue]) {
         givenValue = pageObjects.value[initValue]; //Используеться указанное значение, если в initValue было передано не "Тестовое сообщение"
     } else {
         givenValue = initValue
     }
-
 
     await this.page.fill(locator, givenValue);
 });
 
 // Нажатие на определенный элемент
 When('Я нажимаю на {string}', async function (element) {
+    const projectName = this.project
+    let locator
 
-    const locator = pageObjects.locator[element];
+    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
+    const projectSpecificKey = `${element} ${projectName}`;
+
+    if (pageObjects.locator[projectSpecificKey]) {
+        locator = pageObjects.locator[projectSpecificKey];
+    } else if (pageObjects.locator[element]) {
+        locator = pageObjects.locator[element];
+    } else {
+        throw new Error(`Локатор не найден ни для "${projectSpecificKey}", ни для "${element}"`);
+    }
 
     await this.page.click(locator);
 });
@@ -114,11 +139,16 @@ When('Я жду {string} секунд\\(ы)', { timeout: 120 * 1000 }, async fun
 });
 
 // Шаг для открытия страницы в новой вкладке текущего браузера
-When('Я открываю {string} в новой вкладке', async function (siteName) {
+When('Я открываю {string} в новой вкладке', async function (location) {
+
+    const projectName = this.env
+    const siteName = `${location} ${projectName}`
     const siteUrl = pageObjects.url[siteName]; // Получаем URL
+
     this.newPage = await this.page.context().newPage(); // Открываем новую вкладку
     await this.newPage.goto(siteUrl); // Переходим на указанный URL
     this.page = this.newPage; // Устанавливаем новую вкладку как текущую
+  
 });
 
 // Возвращение на указанную вкладку
@@ -148,7 +178,7 @@ When('Я скроллю до {string}', async function (element) {
 // Ручной скролл вниз 
 When('Я скроллю вниз', async function () {
 
-   await this.page.mouse.wheel(0, 5000);
+    await this.page.mouse.wheel(0, 5000);
 
 });
 
@@ -172,51 +202,51 @@ When('Я навожу на {string}', async function (element) {
 // Шаг для получения данных из ответа любого запроса в формате JSON 
 When('Я отслеживаю и получаю ответ запроса {string}', async function (endpoint) {
     this.token = null;
-  
+
     this.page.on('response', async (response) => {
-      const url = response.url();
-      if (url.includes(endpoint)) {
-        try {
-          const json = await response.json();
-          if (json?.data?.token) {
-            /*
-            В файла world можно добавить любой параметр, который нам необходимо
-            распарсить и найти в ответе (пример this id = null), после добавления 
-            в world прописать сюда ниже и в начало то, что требуется достать из ответа, 
-            например this id - json.data.id и использовать в дальнейшем
-            */
-            this.token = json.data.token;
-            //console.log("Токен из зпроса ", this.token)
-          }
-        } catch (e) {
-          console.error('Ошибка при парсинге данных:', e);
+        const url = response.url();
+        if (url.includes(endpoint)) {
+            try {
+                const json = await response.json();
+                if (json?.data?.token) {
+                    /*
+                    В файла world можно добавить любой параметр, который нам необходимо
+                    распарсить и найти в ответе (пример this id = null), после добавления 
+                    в world прописать сюда ниже и в начало то, что требуется достать из ответа, 
+                    например this id - json.data.id и использовать в дальнейшем
+                    */
+                    this.token = json.data.token;
+                    //console.log("Токен из зпроса ", this.token)
+                }
+            } catch (e) {
+                console.error('Ошибка при парсинге данных:', e);
+            }
         }
-      }
     });
-  });
+});
 
 // Шаг для мобильных проверок - открывает админку в новом брузере нормального размера
 When('Я открываю {string} в новом браузере', async function (siteName) {
-  const siteUrl = pageObjects.url[siteName]; // Получаем URL
+    const siteUrl = pageObjects.url[siteName]; // Получаем URL
 
-  // Открытие нового браузера для desktop
-  await this.openWebBrowser(); 
+    // Открытие нового браузера для desktop
+    await this.openWebBrowser();
 
-  // Переход на нужную страницу
-  await this.desktopPage.goto(siteUrl);
+    // Переход на нужную страницу
+    await this.desktopPage.goto(siteUrl);
 
-  // Переключаемся на открытую десктопную страницу
-  this.switchToDesktop();
+    // Переключаемся на открытую десктопную страницу
+    this.switchToDesktop();
 });
 
 // Шаг для мобильных проверок-  переключение между открытыми браузерами (мобильным и нормального размера)
 When('Я переключаюсь на {string} браузер', async function (target) {
     if (target === 'мобильный') {
-      this.switchToMobile();
+        this.switchToMobile();
     } else if (target === 'десктопный') {
-      this.switchToDesktop();
+        this.switchToDesktop();
     }
-  });
+});
 
 // Шаги для технических кейсов 
 // ----------------------------------------------------------------------------------

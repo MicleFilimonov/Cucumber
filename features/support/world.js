@@ -16,6 +16,9 @@ class World {
     this.token = null; // Определение токена
     this.requestHeaders = null; //Опреление заголовков
     this.attach = attach; // Определение прикрепленных файлов для отчета
+    this.project = (process.env.PROJECT || '').toUpperCase();//переменная проекта для скрипта запуска
+    this.env = (process.env.ENV || '').toUpperCase();//переменная окружения для скрипта запуска
+    this.device = (process.env.DEVICE || 'web').toLowerCase();//переменная устройства для скрипта запуска
   }
 
   // Инициализация бразуера в мобильном разрешении (изменяется в завимисости от указанного устройства)

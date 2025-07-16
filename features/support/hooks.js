@@ -55,7 +55,7 @@ After(async function (scenario) {
           }
         }
 
-    // Закрытие браузера
+    //Закрытие браузера
     await this.closeBrowsers();
 });
 

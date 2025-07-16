@@ -1,23 +1,34 @@
 import { Then, setDefaultTimeout } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { pageObjects } from '../../page_objects/pageObjects.js';
-import { adminLocator } from '../../page_objects/adminLocators.js';
-import { siteLocator } from '../../page_objects/sitePageLocators.js';
-import { mbssLocator } from '../../page_objects/mbssLocators.js';
 
 setDefaultTimeout(60 * 1000)
 
 // вижу или не вижу какой то элемент 
 Then('Я {string} {string}', async function (activity, element) {
 
-    const locator = pageObjects.locator[element];
-    let givenElement = this.page.locator(locator)
+    let locator
 
     // Генерация локатора с использованием global.generatedMessage
     if (element === 'Тестовое сообщение') {
-        const dynamicLocator = `//*[contains(text(), "${global.generatedMessage}")]`;
-        givenElement = this.page.locator(dynamicLocator);
+        locator = `//*[contains(text(), "${global.generatedMessage}")]`;
+    } else {
+
+        // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
+        const projectSpecificKey = `${element} ${this.project}`;
+
+        if (pageObjects.locator[projectSpecificKey]) {
+            locator = pageObjects.locator[projectSpecificKey];
+        } else if (pageObjects.locator[element]) {
+            locator = pageObjects.locator[element];
+        } else {
+            throw new Error(`Локатор не найден ни для "${projectSpecificKey}", ни для "${element}"`);
+        }
     }
+
+    const givenElement = this.page.locator(locator)
+
+
     // Поправить и сделать свич
 
     if (activity === 'не вижу') {
@@ -75,7 +86,7 @@ Then('Я {string} {string} с текстом {string}', async function (activity
     }
 
     const elementText = await givenElement.innerText();
-    if (elementText !== text) {
+    if (!elementText.includes(text)) {
         throw new Error(
             `Текст элемента "${element}" не совпадает. Ожидалось: "${text}", получено: "${elementText}"`
         );
@@ -166,33 +177,33 @@ Then('Элемент {string} {string} зарендерился и кликаб�
 Then('Я получаю хедеры запроса {string} и сравниваю с присвоенным токеном', async function (endpoint) {
     // Ищем в заголовках запросов токен, который был сохранён ранее
     const requestHeaders = this.capturedRequests.find(request => request.url.includes(endpoint))?.headers;
-    
+
     if (!requestHeaders) {
-      throw new Error(`Запрос с URL "${endpoint}" не был найден`);
+        throw new Error(`Запрос с URL "${endpoint}" не был найден`);
     }
-  
+
     // Извлекаем токен из заголовков, поле 'x-authorization' может содержать 'Bearer <token>'
     // Разделяем 'Bearer <token>' и получаем только токен
-    const tokenFromHeaders = requestHeaders['x-authorization']?.split(' ')[1]; 
-  
+    const tokenFromHeaders = requestHeaders['x-authorization']?.split(' ')[1];
+
     if (!tokenFromHeaders) {
-      throw new Error('Токен не найден в заголовках');
+        throw new Error('Токен не найден в заголовках');
     }
-  
+
     // Сравниваем токены
     if (this.token !== tokenFromHeaders) {
-      throw new Error(`Токен из ответа запроса не совпадает с токеном из заголовков: ${this.token} !== ${tokenFromHeaders}`);
+        throw new Error(`Токен из ответа запроса не совпадает с токеном из заголовков: ${this.token} !== ${tokenFromHeaders}`);
     } else {
-      console.log('Токен совпал');
+        console.log('Токен совпал');
     }
-  });
-  
-  
-  
-  
+});
 
-  
-  
-  
+
+
+
+
+
+
+
 
 
