@@ -4,7 +4,7 @@ export default {
       './step-definitions/given.js',
       './step-definitions/when.js',
       './step-definitions/then.js',
-      './step_definitions/**/*.js'
+      'step-definitions/**/*.js'
     ],
     backtrace: true,
     headless: false,
@@ -22,7 +22,8 @@ export default {
     format: [
       'summary',
       'progress',
-      'node_modules/allure-cucumberjs'
+      'json:./reports/cucumber_report.json',
+      'progress'
     ],
     publishQuiet: true,
     language: 'ru',

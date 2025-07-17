@@ -28,6 +28,7 @@ export default defineConfig({
     ignoreUndefinedDefinitions: false, // Ожидать, что все шаги будут определены
   },
   reporter: [
-    ["html"]
+    ["html"],
+    ["allure-playwright"]
   ],
 });

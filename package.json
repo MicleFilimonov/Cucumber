@@ -8,9 +8,10 @@
   "type": "module",
   "scripts": {
     "clean:artifacts": "rimraf --glob \"cucumber-json/*.json\" \"screenshots/*\" \"reports/features/*\"",
-    "test:web": "cross-env ENV=STAGE PROJECT=IZZI DEVICE=web npx cucumber-js features/WEB.feature",
-    "test:mob": "cross-env ENV=STAGE PROJECT=LEGZO DEVICE=mob npx cucumber-js features/WEB.feature",
-    "test:devFileWeb": "cross-env ENV=STAGE PROJECT=JET DEVICE=web npx cucumber-js features/devFile.feature --format json:./cucumber-json/dev-web.json"
+    "test:web": "cross-env ENV=STAGE PROJECT=IZZI DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report.json",
+    "test:mob": "cross-env ENV=STAGE PROJECT=LEGZO DEVICE=mob npx cucumber-js features/WEB.feature --format json:./reports/report.json",
+    "test:devFileWeb": "cross-env ENV=STAGE PROJECT=JET DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report.json",
+    "report": "node generateReport.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +25,10 @@
   "devDependencies": {
     "@cucumber/cucumber": "^11.1.1",
     "allure-cucumberjs": "^3.3.2",
+    "allure-playwright": "^3.3.2",
     "cross-env": "^7.0.3",
+    "multiple-cucumber-html-reporter": "^3.9.3",
+    "open": "^10.2.0",
     "rimraf": "^6.0.1"
   }
 }
