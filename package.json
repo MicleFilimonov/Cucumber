@@ -7,10 +7,54 @@
   },
   "type": "module",
   "scripts": {
-    "clean:artifacts": "rimraf --glob \"cucumber-json/*.json\" \"screenshots/*\" \"reports/features/*\"",
-    "test:web": "cross-env ENV=STAGE PROJECT=IZZI DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report.json",
+    "clean:artifacts": "rimraf --glob reports/*.json reports/html \"screenshots/*\"",
+    
+    "test:WebLegzo": "cross-env PROJECT=LEGZO DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-legzo.json",
+    "test:WebSol": "cross-env PROJECT=SOL DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-sol.json",
+    "test:WebFresh": "cross-env PROJECT=FRESH DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-fresh.json",
+    "test:WebJet": "cross-env PROJECT=JET DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-jet.json",
+    "test:WebIzzi": "cross-env PROJECT=IZZI DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-izzi.json",
+    "test:WebStarda": "cross-env PROJECT=STARDA DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-starda.json",
+    "test:WebLex": "cross-env PROJECT=LEX DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-lex.json",
+    "test:WebDrip": "cross-env PROJECT=DRIP DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-drip.json",
+    "test:WebMonro": "cross-env PROJECT=MONRO DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-monro.json",
+    "test:WebGizbo": "cross-env PROJECT=GIZBO DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-gizbo.json",
+    "test:WebIrwin": "cross-env PROJECT=IRWIN DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-irwin.json",
+    "test:WebFlagman": "cross-env PROJECT=FLAGMAN DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-flagman.json",
+    "test:WebMartin": "cross-env PROJECT=MARTIN DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-martin.json",
+    "test:Web1go": "cross-env PROJECT=1GO DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-1go.json",
+    "test:WebRox": "cross-env PROJECT=ROX DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-rox.json",
+    "test:WebVolna": "cross-env PROJECT=VOLNA DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-volna.json",
+    
+    "test:WebAll": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:Web1go test:WebStarda test:WebVolna test:WebRox test:WebFlagman test:WebIrwin test:WebDrip test:WebStarda test:WebLegzo test:WebJet test:WebSol test:WebFresh test:WebIzzi",
+
+
     "test:mob": "cross-env ENV=STAGE PROJECT=LEGZO DEVICE=mob npx cucumber-js features/WEB.feature --format json:./reports/report.json",
+    
     "test:devFileWeb": "cross-env ENV=STAGE PROJECT=JET DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report.json",
+    
+    "test:devFileWebLegzo": "cross-env PROJECT=LEGZO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-legzo.json",
+    "test:devFileWebSol": "cross-env PROJECT=SOL DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-sol.json",
+    "test:devFileWebFresh": "cross-env PROJECT=FRESH DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-fresh.json",
+    "test:devFileWebJet": "cross-env PROJECT=JET DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-jet.json",
+    "test:devFileWebIzzi": "cross-env PROJECT=IZZI DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-izzi.json",
+    "test:devFileWebStarda": "cross-env PROJECT=STARDA DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-starda.json",
+    "test:devFileWebLex": "cross-env PROJECT=LEX DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-lex.json",
+    "test:devFileWebDrip": "cross-env PROJECT=DRIP DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-drip.json",
+    "test:devFileWebMonro": "cross-env PROJECT=MONRO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-monro.json",
+    "test:devFileWebGizbo": "cross-env PROJECT=GIZBO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-gizbo.json",
+    "test:devFileWebIrwin": "cross-env PROJECT=IRWIN DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-irwin.json",
+    "test:devFileWebFlagman": "cross-env PROJECT=FLAGMAN DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-flagman.json",
+    "test:devFileWebMartin": "cross-env PROJECT=MARTIN DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-martin.json",
+    "test:devFileWeb1go": "cross-env PROJECT=1GO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-1go.json",
+    "test:devFileWebRox": "cross-env PROJECT=ROX DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-rox.json",
+    "test:devFileWebVolna": "cross-env PROJECT=VOLNA DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-volna.json",
+    
+    "test:devAll": "cross-env ENV=STAGE npm-run-all --sequential clean:artifacts --continue-on-error test:devFileWeb1go test:devFileWebStarda test:devFileWebVolna test:devFileWebRox test:devFileWebIrwin test:devFileWebDrip test:devFileWebLegzo test:devFileWebJet test:devFileWebSol test:devFileWebFresh test:devFileWebIzzi report",
+    "test:devChosen": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:devFileWebVolna report ",
+    
+    "test:ChosenWeb": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:WebIrwin report ",
+
     "report": "node generateReport.js"
   },
   "author": "",
@@ -28,6 +72,7 @@
     "allure-playwright": "^3.3.2",
     "cross-env": "^7.0.3",
     "multiple-cucumber-html-reporter": "^3.9.3",
+    "npm-run-all": "^4.1.5",
     "open": "^10.2.0",
     "rimraf": "^6.0.1"
   }

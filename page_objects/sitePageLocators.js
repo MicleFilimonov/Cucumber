@@ -20,6 +20,7 @@ export const siteLocator = {
         'Меню поддержки': '//*[@data-test="top-menu-support"]',
         'MBSS поддержка': '//*[@data-test="support-livechat"]', //Вероятно с раскаткой MBSS измениться - проверить после полной интеграции на всех проектах
 
+        'Активатор': '//*[@class="activator-button"]',
 
 
         // MOBILE
@@ -39,9 +40,11 @@ export const siteLocator = {
         'Поле пароля на сайте ROX': '//*[@data-test="passwd_field"]',
         'Боковое меню ROX': '//*[@id="hamburger"]',
         'Меню информации ROX': '//*[text()="информация"]',
-        'Контакты ROX': '//li[@data-role="accordion-item"]//*[text()="контакты"]',
+        'Контакты ROX': '//li[@class="footer-menu__li"]//*[text()="контакты"]',
         'Меню поддержки ROX': '//*[@class="multipl-list multipl-list--support"]',
         'MBSS поддержка ROX': '//*[text()="связаться через чат"]',
+        'Активатор ROX': '//div[@class="main-top-line__help-chat"]',
+
 
         //MARTIN 
         'Виджет MARTIN': '//div[@class="support-widget__button"]',
@@ -49,5 +52,25 @@ export const siteLocator = {
         'Начать чат в контактах MARTIN': '//a[@href="/ru/support/chat"]',
         'Активатор MBSS MARTIN': '//span[@class="support-widget__item-wr"]//*[@class="icon support-widget__item-icon"]',
         'MBSS поддержка MARTIN': '//div[contains(@to,"/support/chat")]',
+
+        // VOLNA 
+        'Поле пароля на сайте VOLNA': '//*[@data-test="passwd_field"]',
+        'Активатор VOLNA': '//a[@class="live_chat"]',
+        'Контакты ROX': '//li[@class="list__item"]//a[normalize-space(.)="Контакты"]',
+
+
+        // 1GO 
+        'Меню поддержки 1GO': '//div[@class="menu-support"]',
+        'MBSS поддержка 1GO': '//span[@class="menu-text" and text()="LiveChat"]',
+
+
+        // IZZI
+        'Закрыть модалку IZZI': '//button[@class="general-auth-form__close"]',
+
+        // STARDA
+        'Боковое меню STARDA':'//button[@data-test="menu"]',
+
+        // IRWIN 
+        'Начать чат в контактах IRWIN': '//a[contains(@href, "/support") and .//span[contains(text(), "Live Chat")]]'
 };
 

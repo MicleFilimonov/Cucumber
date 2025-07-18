@@ -87,14 +87,25 @@ When('Я нажимаю на {string} с текстом {string}', async functio
 // Ожидание появления/скрытия элемента для прохождения дальнейших шагов
 When('Я ожидаю, что {string} {string}', async function (element, activity) {
 
-    const locator = pageObjects.locator[element];
-    let givenElement = this.page.locator(locator);
+    let locator
 
     if (element === 'Тестовое сообщение') {
-        const dynamicLocator = `//*[contains(text(), "${global.generatedMessage}")]`;
-        givenElement = this.page.locator(dynamicLocator);
+        locator = `//*[contains(text(), "${global.generatedMessage}")]`;
+    }
+       else { 
+        const projectSpecificKey = `${element} ${this.project}`;
+        
+        if (pageObjects.locator[projectSpecificKey]) {
+            locator = pageObjects.locator[projectSpecificKey];
+        } else if (pageObjects.locator[element]) {
+            locator = pageObjects.locator[element];
+        } else {
+            throw new Error(`Локатор не найден ни для "${projectSpecificKey}", ни для "${element}"`);
+        }
     }
 
+        const givenElement = this.page.locator(locator)
+  
     if (activity === 'отображается') {
         // Ожидаем, что хотя бы один элемент станет видимым
         await givenElement.first().waitFor({ state: 'visible' });
@@ -170,9 +181,16 @@ When('Я возвращаюсь на {string} вкладку', async function (c
 When('Я скроллю до {string}', async function (element) {
 
     const locator = this.page.locator(pageObjects.locator[element]);
+    const count = await locator.count()
 
-    await locator.scrollIntoViewIfNeeded();
-
+    if (count > 0) {
+        await locator.scrollIntoViewIfNeeded();
+    } else {
+        await this.page.evaluate(() => {
+        window.scrollTo(0, document.body.scrollHeight)
+    })
+    await this.page.waitForTimeout(500)
+}
 });
 
 // Ручной скролл вниз 

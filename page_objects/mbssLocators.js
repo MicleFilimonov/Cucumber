@@ -5,8 +5,6 @@ export const mbssLocator = {
 
         // Локаторы  в виджете
         'Виджет MBSS': '//*[@id="mbss-main-view"]',
-        'Активатор': '//*[@class="activator-button"]',
-        'Активатор ROX': '//div[@class="main-top-line__help-chat"]',
         'Сворачивание виджета': '//*[@id="mbss-collapse-view-btn"]',
         'Возобновить чат': '//*[@id="mbss-bottom-action-btn"]',      
         'Аватар оператора': '//*[@id="mbss-avatar-manager"]',

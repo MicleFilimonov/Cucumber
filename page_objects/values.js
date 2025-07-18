@@ -18,7 +18,7 @@ export const value = {
         'Оператора GIZBO': process.env.ADMIN_GIZBO_EMAIL,
         'Оператора ROX': process.env.ADMIN_ROX_EMAIL,
         'Оператора VOLNA': process.env.ADMIN_VOLNA_EMAIL,
-        'Оператора 1GO': process.env.ADMIN_1GO_EMAIL,
+        'Оператора 1GO': process.env.ADMIN_ONEGO_EMAIL,
         'Оператора IRWIN': process.env.ADMIN_IRWIN_EMAIL,
         'Оператора FLAGMAN': process.env.ADMIN_FLAGMAN_EMAIL,
         'Оператора MARTIN': process.env.ADMIN_MARTIN_EMAIL,
