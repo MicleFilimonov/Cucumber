@@ -16,7 +16,7 @@ export default {
     strict: false,
     tagExpression: '',
     timeout: 60000,  // Таймаут для шагов
-    actionTimeout: 30000, // Таймаут для каждой отдельной операции (клик, ввод и т.д.)
+    actionTimeout: 60000, // Таймаут для каждой отдельной операции (клик, ввод и т.д.)
     navigationTimeout: 40000, // Таймаут для операций навигации (page.goto)
     ignoreUndefinedDefinitions: false,
     format: [

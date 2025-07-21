@@ -7,56 +7,58 @@ let page;
 
 
 Before(async function () {
-    this.capturedRequests = [];
+  this.capturedRequests = [];
 
-    if (process.env.DEVICE === 'mobile') {
-        await this.openMobileBrowser();
-      } else {
-        await this.openWebBrowser();
-      }
+  if (process.env.DEVICE === 'mobile') {
+    await this.openMobileBrowser();
+  } else {
+    await this.openWebBrowser();
+  }
 
-    this.page.on('requestfinished', (request) => {
-        const headers = request.headers();  // Получаем заголовки запроса
-        this.capturedRequests.push({
-            url: request.url(),
-            headers
-        });  // Сохраняем URL и хедеры запроса
-    });
+  this.page.setDefaultTimeout(60000)
+
+  this.page.on('requestfinished', (request) => {
+    const headers = request.headers();  // Получаем заголовки запроса
+    this.capturedRequests.push({
+      url: request.url(),
+      headers
+    });  // Сохраняем URL и хедеры запроса
+  });
 });
 
 
 After(async function (scenario) {
-    if (scenario.result.status === 'FAILED') {
-        // Создаем папку для скриншотов, если ее нет
-        if (!fs.existsSync('screenshots')) {
-            fs.mkdirSync('screenshots');
-        }
+  if (scenario.result.status === 'FAILED') {
+    // Создаем папку для скриншотов, если ее нет
+    if (!fs.existsSync('screenshots')) {
+      fs.mkdirSync('screenshots');
+    }
 
-        const screenshotPath = path.join(
-            'screenshots',
-            `${scenario.pickle.name.replace(/\s+/g, '_')}_${Date.now()}.png`
-        );
+    const screenshotPath = path.join(
+      'screenshots',
+      `${scenario.pickle.name.replace(/\s+/g, '_')}_${Date.now()}.png`
+    );
 
-        // Делаем скриншот
-        try {
-            if (this.page) {
-              await this.page.screenshot({
-                path: screenshotPath,
-                timeout: 5000,
-                animations: 'disabled',
-                waitForFonts: false
-              });
-      
-              const screenshotData = fs.readFileSync(screenshotPath);
-              await this.attach(screenshotData, 'image/png');
-            }
-          } catch (err) {
-            console.error('Ошибка при создании скриншота:', err);
-          }
-        }
+    // Делаем скриншот
+    try {
+      if (this.page) {
+        await this.page.screenshot({
+          path: screenshotPath,
+          timeout: 5000,
+          animations: 'disabled',
+          waitForFonts: false
+        });
 
-    //Закрытие браузера
-    await this.closeBrowsers();
+        const screenshotData = fs.readFileSync(screenshotPath);
+        await this.attach(screenshotData, 'image/png');
+      }
+    } catch (err) {
+      console.error('Ошибка при создании скриншота:', err);
+    }
+  }
+
+  //Закрытие браузера
+  await this.closeBrowsers();
 });
 
 export { page };

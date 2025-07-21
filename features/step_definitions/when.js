@@ -3,11 +3,11 @@ import { pageObjects } from '../../page_objects/pageObjects.js';
 
 // запоняю элемент данными в определенном месте (из за общих названий локаторов)
 When('Я заполняю {string} данными {string}', async function (element, initValue) {
-   
-    const projectSpecificLocator = `${element} ${this.project}`
-    let locator 
 
-    if(pageObjects.locator[projectSpecificLocator]) {
+    const projectSpecificLocator = `${element} ${this.project}`
+    let locator
+
+    if (pageObjects.locator[projectSpecificLocator]) {
         locator = pageObjects.locator[projectSpecificLocator]
     } else if (pageObjects.locator[element]) {
         locator = pageObjects.locator[element]
@@ -21,10 +21,10 @@ When('Я заполняю {string} данными {string}', async function (ele
 
     if (initValue === 'Тестовое сообщение') {
         givenValue = this.generateMessage(); // Генерация сообщения  
-    } 
+    }
     else if (pageObjects.value[projectSpecificKey]) {
         givenValue = pageObjects.value[projectSpecificKey]
-    }else if (pageObjects.value && pageObjects.value[initValue]) {
+    } else if (pageObjects.value && pageObjects.value[initValue]) {
         givenValue = pageObjects.value[initValue]; //Используеться указанное значение, если в initValue было передано не "Тестовое сообщение"
     } else {
         givenValue = initValue
@@ -92,9 +92,9 @@ When('Я ожидаю, что {string} {string}', async function (element, activ
     if (element === 'Тестовое сообщение') {
         locator = `//*[contains(text(), "${global.generatedMessage}")]`;
     }
-       else { 
+    else {
         const projectSpecificKey = `${element} ${this.project}`;
-        
+
         if (pageObjects.locator[projectSpecificKey]) {
             locator = pageObjects.locator[projectSpecificKey];
         } else if (pageObjects.locator[element]) {
@@ -104,8 +104,8 @@ When('Я ожидаю, что {string} {string}', async function (element, activ
         }
     }
 
-        const givenElement = this.page.locator(locator)
-  
+    const givenElement = this.page.locator(locator)
+
     if (activity === 'отображается') {
         // Ожидаем, что хотя бы один элемент станет видимым
         await givenElement.first().waitFor({ state: 'visible' });
@@ -159,7 +159,7 @@ When('Я открываю {string} в новой вкладке', async function
     this.newPage = await this.page.context().newPage(); // Открываем новую вкладку
     await this.newPage.goto(siteUrl); // Переходим на указанный URL
     this.page = this.newPage; // Устанавливаем новую вкладку как текущую
-  
+
 });
 
 // Возвращение на указанную вкладку
@@ -187,10 +187,10 @@ When('Я скроллю до {string}', async function (element) {
         await locator.scrollIntoViewIfNeeded();
     } else {
         await this.page.evaluate(() => {
-        window.scrollTo(0, document.body.scrollHeight)
-    })
-    await this.page.waitForTimeout(500)
-}
+            window.scrollTo(0, document.body.scrollHeight)
+        })
+        await this.page.waitForTimeout(500)
+    }
 });
 
 // Ручной скролл вниз 
@@ -244,7 +244,9 @@ When('Я отслеживаю и получаю ответ запроса {strin
 });
 
 // Шаг для мобильных проверок - открывает админку в новом брузере нормального размера
-When('Я открываю {string} в новом браузере', async function (siteName) {
+When('Я открываю {string} в новом браузере', async function (location) {
+
+    const siteName = `${location} ${this.env}`;
     const siteUrl = pageObjects.url[siteName]; // Получаем URL
 
     // Открытие нового браузера для desktop

@@ -26,7 +26,7 @@ export const siteLocator = {
         // MOBILE
         'Ботом меню моб': '//*[@data-test="bottom_menu-home"]',
         'Пункт поддержка моб': '//*[@data-test="top-menu-support"]', 
-        'MBSS моб': '//*[@data-test="support-livechat"])', 
+        'MBSS моб': '//*[@data-test="support-livechat"]', 
 
         //LEGZO
         'Боковое меню': '//*[@data-test="menu"]',
