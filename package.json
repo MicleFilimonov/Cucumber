@@ -51,7 +51,7 @@
     "test:devFileWebVolna": "cross-env PROJECT=VOLNA DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-volna.json",
     
     "test:devAll": "cross-env ENV=STAGE npm-run-all --sequential clean:artifacts --continue-on-error test:devFileWeb1go test:devFileWebStarda test:devFileWebVolna test:devFileWebRox test:devFileWebIrwin test:devFileWebDrip test:devFileWebLegzo test:devFileWebJet test:devFileWebSol test:devFileWebFresh test:devFileWebIzzi report",
-    "test:devChosen": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:devFileWebVolna report ",
+    "test:devChosen": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:devFileWebRox report ",
     
     "test:ChosenWeb": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:WebIrwin report ",
 
