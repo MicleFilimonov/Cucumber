@@ -54,7 +54,7 @@
     "test:ChosenMob": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:MobSol report ",
 
 
-    "test:devFile": "cross-env ENV=STAGE PROJECT=JET DEVICE=mobile npx cucumber-js features/devFile.feature --format json:./reports/report.json",
+    "test:devFile": "cross-env ENV=STAGE PROJECT=SOL DEVICE=mobile npx cucumber-js features/devFile.feature --format json:./reports/report.json",
     
     "test:devFileWebLegzo": "cross-env PROJECT=LEGZO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-legzo.json",
     "test:devFileWebSol": "cross-env PROJECT=SOL DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-sol.json",
