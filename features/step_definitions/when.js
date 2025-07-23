@@ -1,6 +1,22 @@
 import { When } from '@cucumber/cucumber';
 import { pageObjects } from '../../page_objects/pageObjects.js';
 
+
+// Шаг для открытия саппорта по прямой ссылке (основной для работы тестов) 
+When('Я открываю саппорт', async function () {
+
+    const postfix = "/support/chat"
+    const siteName = `${this.project} ${this.env}`;
+    const mainUrl = pageObjects.url[siteName];
+
+    const baseUrl = mainUrl.split('/sign')[0];
+    const siteUrl = baseUrl + postfix
+
+
+    await this.page.goto(siteUrl); // Переходим на указанный URL
+
+});
+
 // запоняю элемент данными в определенном месте (из за общих названий локаторов)
 When('Я заполняю {string} данными {string}', async function (element, initValue) {
 

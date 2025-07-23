@@ -28,7 +28,7 @@
     
     "test:WebAll": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:Web1go test:WebStarda test:WebVolna test:WebRox test:WebFlagman test:WebIrwin test:WebDrip test:WebStarda test:WebLegzo test:WebJet test:WebSol test:WebFresh test:WebIzzi",
 
-    "test:ChosenWeb": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:WebIrwin report ",
+    "test:ChosenWeb": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:WebIzzi report ",
 
 
 
@@ -51,7 +51,7 @@
     
     "test:MobAll": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error ",
 
-    "test:ChosenMob": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:MobSol report ",
+    "test:ChosenMob": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:MobIzzi report ",
 
 
     "test:devFile": "cross-env ENV=STAGE PROJECT=SOL DEVICE=mobile npx cucumber-js features/devFile.feature --format json:./reports/report.json",
@@ -74,7 +74,7 @@
     "test:devFileWebVolna": "cross-env PROJECT=VOLNA DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-volna.json",
     
     "test:devAll": "cross-env ENV=STAGE npm-run-all --sequential clean:artifacts --continue-on-error test:devFileWeb1go test:devFileWebStarda test:devFileWebVolna test:devFileWebRox test:devFileWebIrwin test:devFileWebDrip test:devFileWebLegzo test:devFileWebJet test:devFileWebSol test:devFileWebFresh test:devFileWebIzzi report",
-    "test:devChosen": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:devFileWebVolna report ",
+    "test:devChosen": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:devFileWebIzzi report ",
     
 
     "report": "node generateReport.js"
