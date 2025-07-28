@@ -24,7 +24,7 @@ class World {
   // Инициализация бразуера в мобильном разрешении (изменяется в завимисости от указанного устройства)
   async openMobileBrowser() {
     // Инициализация экземпляра браузера
-    this.mobileBrowser = await chromium.launch({ headless: false });
+    this.mobileBrowser = await chromium.launch({ headless: true });
     // Инициализация контекста браузера (передаем константу mobileDevice для мобильной версии)
     this.mobileContext = await this.mobileBrowser.newContext({ 
       ...mobileDevice 
@@ -36,20 +36,21 @@ class World {
 
   // Инициализация бразуера в разрешении 1366х768
   async openWebBrowser() {
-    this.desktopBrowser = await chromium.launch({ headless: false });
+    this.desktopBrowser = await chromium.launch({ headless: true });
     this.desktopContext = await this.desktopBrowser.newContext({
       viewport: { width: 1366, height: 768 }
     });
     this.desktopPage = await this.desktopContext.newPage();
     this.page = this.desktopPage;
+    this.browser = this.desktopBrowser;
     // не переключаемся сразу, можно вручную через шаг
   }
-
 
   // Открытие новой вкладки в текущем окне браузера
   async openNewTab() {
     const desktopContext = await this.browser.newContext(); // новый контекст
-    this.newPage = await desktopContext.newPage(); // новая веб-вкладка
+    this.desktopContext.setDefaultTimeout(50 * 1000);
+    this.newPage = await this.desktopContext.newPage(); // новая веб-вкладка
   }
 
   //Закрытие вкладки в текущем окне браузера

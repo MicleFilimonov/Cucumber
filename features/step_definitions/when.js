@@ -122,16 +122,17 @@ When('Я ожидаю, что {string} {string}', async function (element, activ
 
     const givenElement = this.page.locator(locator)
 
+
     if (activity === 'отображается') {
         // Ожидаем, что хотя бы один элемент станет видимым
         await givenElement.first().waitFor({ state: 'visible' });
     } else if (activity === 'не отображается') {
+        await this.page.waitForTimeout(5000);
         const count = await givenElement.count(); // сколько элементов
         for (let i = 0; i < count; i++) {
             await givenElement.nth(i).waitFor({ state: 'hidden' }); // каждый должен быть скрыт
         }
     }
-
 });
 
 // Ожидание отображения локатора с определенным текстом
@@ -155,6 +156,7 @@ When('Я ожидаю, что {string} с текстом {string} {string}', asy
 
 });
 
+// Шаг для перезагрузки страницы
 When('Я перезагружаю текущую страницу', async function () {
     await this.page.reload({ waitUntil: 'domcontentloaded' })
 });
@@ -168,11 +170,9 @@ When('Я жду {string} секунд\\(ы)', { timeout: 120 * 1000 }, async fun
 // Шаг для открытия страницы в новой вкладке текущего браузера
 When('Я открываю {string} в новой вкладке', async function (location) {
 
-    const projectName = this.env
-    const siteName = `${location} ${projectName}`
-    const siteUrl = pageObjects.url[siteName]; // Получаем URL
+    const siteUrl = pageObjects.url[`${location} ${this.env}`]; // Получаем URL
 
-    this.newPage = await this.page.context().newPage(); // Открываем новую вкладку
+    await this.openNewTab();
     await this.newPage.goto(siteUrl); // Переходим на указанный URL
     this.page = this.newPage; // Устанавливаем новую вкладку как текущую
 
@@ -224,7 +224,7 @@ When('Я загружаю файл {string} в {string}', async function (filePa
     await fileInput.setInputFiles(filePath);
 });
 
-// Щаг для наведения курсора на элемент 
+// Шаг для наведения курсора на элемент 
 When('Я навожу на {string}', async function (element) {
 
     const locator = this.page.locator(pageObjects.locator[element]);

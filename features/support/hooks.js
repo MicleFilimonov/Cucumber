@@ -2,7 +2,6 @@ import { Before, After, setDefaultTimeout } from '@cucumber/cucumber';
 import fs from 'fs';
 import path from 'path';
 
-setDefaultTimeout(60 * 1000); // Установка таймаута для шагов теста
 let page;
 
 
@@ -15,7 +14,7 @@ Before(async function () {
     await this.openWebBrowser();
   }
 
-  this.page.setDefaultTimeout(60000)
+  this.page.setDefaultTimeout(50 * 1000)//Рабочий таймаут
 
   this.page.on('requestfinished', (request) => {
     const headers = request.headers();  // Получаем заголовки запроса
