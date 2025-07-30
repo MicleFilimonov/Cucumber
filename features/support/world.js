@@ -2,7 +2,7 @@ import { setWorldConstructor } from '@cucumber/cucumber';
 import { devices, chromium } from 'playwright';
 
 const isMobile = process.env.DEVICE === 'mobile';
-const mobileDevice = devices['Nexus 6'];
+const mobileDevice = devices['iPhone 13 Pro'];
 
 class World {
   constructor({ attach }) {

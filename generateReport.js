@@ -6,22 +6,39 @@ import fs from 'fs';
 const reportsDir = path.resolve('./reports');
 
 const fileProjectMap = {
-  'report-legzo.json': 'LEGZO',
-  'report-sol.json': 'SOL',
-  'report-fresh.json': 'FRESH',
-  'report-jet.json': 'JET',
-  'report-izzi.json': 'IZZI',
-  'report-starda.json': 'STARDA',
-  'report-lex.json': 'LEX',
-  'report-drip.json': 'DRIP',
-  'report-monro.json': 'MONRO',
-  'report-gizbo.json': 'GIZBO',
-  'report-irwin.json': 'IRWIN',
-  'report-flagman.json': 'FLAGMAN',
-  'report-martin.json': 'MARTIN',
-  'report-1go.json': '1GO',
-  'report-rox.json': 'ROX',
-  'report-volna.json': 'VOLNA',
+  'report-legzo-web.json': 'LEGZO Web',
+  'report-sol-web.json': 'SOL Web',
+  'report-fresh-web.json': 'FRESH Web',
+  'report-jet-web.json': 'JET Web',
+  'report-izzi-web.json': 'IZZI Web',
+  'report-starda-web.json': 'STARDA Web',
+  'report-lex-web.json': 'LEX Web',
+  'report-drip-web.json': 'DRIP Web',
+  'report-monro-web.json': 'MONRO Web',
+  'report-gizbo-web.json': 'GIZBO Web',
+  'report-irwin-web.json': 'IRWIN Web',
+  'report-flagman-web.json': 'FLAGMAN Web',
+  'report-martin-web.json': 'MARTIN Web',
+  'report-1go-web.json': '1GO Web',
+  'report-rox-web.json': 'ROX Web',
+  'report-volna-web.json': 'VOLNA Web',
+
+  'report-legzo-mob.json': 'LEGZO Mobile',
+  'report-sol-mob.json': 'SOL Mobile',
+  'report-fresh-mob.json': 'FRESH Mobile',
+  'report-jet-mob.json': 'JET Mobile',
+  'report-izzi-mob.json': 'IZZI Mobile',
+  'report-starda-mob.json': 'STARDA Mobile',
+  'report-lex-mob.json': 'LEX Mobile',
+  'report-drip-mob.json': 'DRIP Mobile',
+  'report-monro-mob.json': 'MONRO Mobile',
+  'report-gizbo-mob.json': 'GIZBO Mobile',
+  'report-irwin-mob.json': 'IRWIN Mobile',
+  'report-flagman-mob.json': 'FLAGMAN Mobile',
+  'report-martin-mob.json': 'MARTIN Mobile',
+  'report-1go-mob.json': '1GO Mobile',
+  'report-rox-mob.json': 'ROX Mobile',
+  'report-volna-mob.json': 'VOLNA Mobile',
 };
 
 function renameFeatureInReports() {
@@ -31,18 +48,38 @@ function renameFeatureInReports() {
       console.warn(`Файл не найден: ${fileName}`);
       return;
     }
+
     const content = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+
+    const isMobile = fileName.includes('-mob');
+    const device = isMobile ? 'iPhone 13 Pro' : 'Desktop';
+
+    const browserName = 'chrome';
+    const browserVersion = '124'; // можно тянуть из Playwright: await page.browser().version()
+    const platformName = 'Windows';
+    const platformVersion = '11';
 
     content.forEach(feature => {
       if (feature.name) {
         feature.name = `${feature.name} - ${project}`;
       }
+
+      feature.metadata = {
+        browser: {
+          name: browserName,
+          version: browserVersion,
+        },
+        device: device,
+        platform: {
+          name: platformName,
+          version: platformVersion,
+        },
+      };
     });
 
     fs.writeFileSync(filePath, JSON.stringify(content, null, 2));
   });
 }
-
 renameFeatureInReports();
 
 const reportPath = path.resolve('./reports/html/index.html');
@@ -50,17 +87,6 @@ const reportPath = path.resolve('./reports/html/index.html');
 reporter.generate({
   jsonDir: './reports',
   reportPath: './reports/html',
-  metadata: {
-    browser: {
-      name: 'chrome',
-      version: '134',
-    },
-    device: process.env.DEVICE || 'web',
-    platform: {
-      name: 'Windows',
-      version: '10',
-    },
-  },
   customData: {
     title: 'Информация о тестах',
     data: [
