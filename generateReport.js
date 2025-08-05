@@ -39,6 +39,23 @@ const fileProjectMap = {
   'report-1go-mob.json': '1GO Mobile',
   'report-rox-mob.json': 'ROX Mobile',
   'report-volna-mob.json': 'VOLNA Mobile',
+
+  'report-legzo-dev.json': 'LEGZO DEV',
+  'report-sol-dev.json': 'SOL DEV',
+  'report-fresh-dev.json': 'FRESH DEV',
+  'report-jet-dev.json': 'JET DEV',
+  'report-izzi-dev.json': 'IZZI DEV',
+  'report-starda-dev.json': 'STARDA DEV',
+  'report-lex-dev.json': 'LEX DEV',
+  'report-drip-dev.json': 'DRIP DEV',
+  'report-monro-dev.json': 'MONRO DEV',
+  'report-gizbo-dev.json': 'GIZBO DEV',
+  'report-irwin-dev.json': 'IRWIN DEV',
+  'report-flagman-dev.json': 'FLAGMAN DEV',
+  'report-martin-dev.json': 'MARTIN DEV',
+  'report-1go-dev.json': '1GO DEV',
+  'report-rox-dev.json': 'ROX DEV',
+  'report-volna-dev.json': 'VOLNA DEV',
 };
 
 function renameFeatureInReports() {
