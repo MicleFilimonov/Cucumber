@@ -38,25 +38,25 @@ export const url = {
         'MARTIN STAGE': process.env.MARTIN_STAGE,
 
 
-        'LEGZO PROD': process.env.LEGZO_PROD,
-        'JET PROD': process.env.JET_PROD,
-        'FRESH PROD': process.env.FRESH_PROD,
-        'SOL PROD': process.env.SOL_PROD,
-        'STARDA PROD': process.env.STARDA_PROD,
-        'IZZI PROD': process.env.IZZI_PROD,
-        'DRIP PROD': process.env.DRIP_PROD,
-        'MONRO PROD': process.env.MONRO_PROD,
-        'LEX PROD': process.env.LEX_PROD,
-        'GIZBO PROD': process.env.GIZBO_PROD,
-        'ROX PROD': process.env.ROX_PROD,
-        'VOLNA PROD': process.env.VOLNA_PROD,
-        'FLAGMAN PROD': process.env.FLAGMAN_PROD,
-        '1GO PROD': process.env.ONEGO_PROD,
-        'IRWIN PROD': process.env.IRWIN_PROD,
+        'LEGZO MASTER': process.env.LEGZO_MASTER,
+        'JET MASTER': process.env.JET_MASTER,
+        'FRESH MASTER': process.env.FRESH_MASTER,
+        'SOL MASTER': process.env.SOL_MASTER,
+        'STARDA MASTER': process.env.STARDA_MASTER,
+        'IZZI MASTER': process.env.IZZI_MASTER,
+        'DRIP MASTER': process.env.DRIP_MASTER,
+        'MONRO MASTER': process.env.MONRO_MASTER,
+        'LEX MASTER': process.env.LEX_MASTER,
+        'GIZBO MASTER': process.env.GIZBO_MASTER,
+        'ROX MASTER': process.env.ROX_MASTER,
+        'VOLNA MASTER': process.env.VOLNA_MASTER,
+        'FLAGMAN MASTER': process.env.FLAGMAN_MASTER,
+        '1GO MASTER': process.env.ONEGO_MASTER,
+        'IRWIN MASTER': process.env.IRWIN_MASTER,
 
         'Админка DEV': process.env.ADMIN_PANEL_DEV,
         'Админка STAGE': process.env.ADMIN_PANEL_STAGE,
-        'Админка PROD': process.env.ADMIN_PANEL_MASTER
+        'Админка MASTER': process.env.ADMIN_PANEL_MASTER
 };
 
 

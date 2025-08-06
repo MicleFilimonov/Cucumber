@@ -20,26 +20,32 @@ When('Я открываю саппорт', async function () {
 // запоняю элемент данными в определенном месте (из за общих названий локаторов)
 When('Я заполняю {string} данными {string}', async function (element, initValue) {
 
-    const projectSpecificLocator = `${element} ${this.project}`
+    const projectSpecificLocator1 = `${element} ${this.project} ${this.env}`
+    const projectSpecificLocator2 = `${element} ${this.project}`
     let locator
 
-    if (pageObjects.locator[projectSpecificLocator]) {
-        locator = pageObjects.locator[projectSpecificLocator]
+    if (pageObjects.locator[projectSpecificLocator1]) {
+        locator = pageObjects.locator[projectSpecificLocator1]
+    } else if (pageObjects.locator[projectSpecificLocator2]) {
+        locator = pageObjects.locator[projectSpecificLocator2]
     } else if (pageObjects.locator[element]) {
         locator = pageObjects.locator[element]
     } else {
-        throw new Error(`Локатор не найден для ${element} или ${projectSpecificLocator}`)
+        throw new Error(`Локатор не найден для ${element} или ${projectSpecificLocator1} или ${projectSpecificLocator2}`)
     }
 
 
-    const projectSpecificKey = `${initValue} ${this.project}`;
+    const projectSpecificKey1 = `${initValue} ${this.project} ${this.env}`;
+    const projectSpecificKey2 = `${initValue} ${this.project}`;
     let givenValue
 
     if (initValue === 'Тестовое сообщение') {
         givenValue = this.generateMessage(); // Генерация сообщения  
     }
-    else if (pageObjects.value[projectSpecificKey]) {
-        givenValue = pageObjects.value[projectSpecificKey]
+    else if (pageObjects.value[projectSpecificKey1]) {
+        givenValue = pageObjects.value[projectSpecificKey1]
+    } else if (pageObjects.value[projectSpecificKey2]) {
+        givenValue = pageObjects.value[projectSpecificKey2]
     } else if (pageObjects.value && pageObjects.value[initValue]) {
         givenValue = pageObjects.value[initValue]; //Используеться указанное значение, если в initValue было передано не "Тестовое сообщение"
     } else {
@@ -51,14 +57,17 @@ When('Я заполняю {string} данными {string}', async function (ele
 
 // Нажатие на определенный элемент
 When('Я нажимаю на {string}', async function (element) {
-    const projectName = this.project
+
     let locator
 
     // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
-    const projectSpecificKey = `${element} ${projectName}`;
+    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
+    const projectSpecificKey2 = `${element} ${this.project}`;
 
-    if (pageObjects.locator[projectSpecificKey]) {
-        locator = pageObjects.locator[projectSpecificKey];
+    if (pageObjects.locator[projectSpecificKey1]) {
+        locator = pageObjects.locator[projectSpecificKey1];
+    } else if (pageObjects.locator[projectSpecificKey2]) {
+        locator = pageObjects.locator[projectSpecificKey2];
     } else if (pageObjects.locator[element]) {
         locator = pageObjects.locator[element];
     } else {
@@ -104,24 +113,24 @@ When('Я нажимаю на {string} с текстом {string}', async functio
 When('Я ожидаю, что {string} {string}', async function (element, activity) {
 
     let locator
+    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
+    const projectSpecificKey2 = `${element} ${this.project}`;
+
 
     if (element === 'Тестовое сообщение') {
         locator = `//*[contains(text(), "${global.generatedMessage}")]`;
     }
-    else {
-        const projectSpecificKey = `${element} ${this.project}`;
-
-        if (pageObjects.locator[projectSpecificKey]) {
-            locator = pageObjects.locator[projectSpecificKey];
-        } else if (pageObjects.locator[element]) {
-            locator = pageObjects.locator[element];
-        } else {
-            throw new Error(`Локатор не найден ни для "${projectSpecificKey}", ни для "${element}"`);
-        }
+    else if (pageObjects.locator[projectSpecificKey1]) {
+        locator = pageObjects.locator[projectSpecificKey1];
+    } else if (pageObjects.locator[projectSpecificKey2]) {
+        locator = pageObjects.locator[projectSpecificKey2];
+    } else if (pageObjects.locator[element]) {
+        locator = pageObjects.locator[element];
+    } else {
+        throw new Error(`Локатор не найден ни для "${projectSpecificKey1}", "${projectSpecificKey2}" ни для "${element}"`);
     }
 
     const givenElement = this.page.locator(locator)
-
 
     if (activity === 'отображается') {
         // Ожидаем, что хотя бы один элемент станет видимым

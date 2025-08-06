@@ -7,34 +7,34 @@ setDefaultTimeout(60 * 1000)
 // вижу или не вижу какой то элемент 
 Then('Я {string} {string}', async function (activity, element) {
 
-    let locator
+    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
+    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
+    const projectSpecificKey2 = `${element} ${this.project}`;
 
+    let locator
     // Генерация локатора с использованием global.generatedMessage
     if (element === 'Тестовое сообщение') {
         locator = `//*[contains(text(), "${global.generatedMessage}")]`;
+    } else if (pageObjects.locator[projectSpecificKey1]) {
+        locator = pageObjects.locator[projectSpecificKey1];
+    } else if (pageObjects.locator[projectSpecificKey2]) {
+        locator = pageObjects.locator[projectSpecificKey2];
+    } else if (pageObjects.locator[element]) {
+        locator = pageObjects.locator[element];
     } else {
-
-        // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
-        const projectSpecificKey = `${element} ${this.project}`;
-
-        if (pageObjects.locator[projectSpecificKey]) {
-            locator = pageObjects.locator[projectSpecificKey];
-        } else if (pageObjects.locator[element]) {
-            locator = pageObjects.locator[element];
-        } else {
-            throw new Error(`Локатор не найден ни для "${projectSpecificKey}", ни для "${element}"`);
-        }
+        throw new Error(`Локатор не найден ни для "${projectSpecificKey1}", "${projectSpecificKey2}", ни для "${element}"`);
     }
 
     const givenElement = this.page.locator(locator)
-
-
-    // Поправить и сделать свич
 
     if (activity === 'не вижу') {
         await expect(givenElement).not.toBeVisible();
     } else if (activity === "вижу") {
         await expect(givenElement).toBeVisible();
+
+        const box = await givenElement.boundingBox();
+        expect(box?.width).toBeGreaterThan(0);
+        expect(box?.height).toBeGreaterThan(0);
     }
 })
 
@@ -54,6 +54,16 @@ Then('Я {string} {string} и {string}', async function (activity, element1, ele
         await expect(givenElement1).toBeVisible();
         await expect(givenElement2).toBeVisible();
 
+        const box1 = await givenElement1.boundingBox();
+        const box2 = await givenElement2.boundingBox();
+
+        if (!box1 || !box2) {
+            throw new error('Один из элементов не имеет размеров в пикселях')
+        }
+        expect(box1?.width).toBeGreaterThan(0);
+        expect(box2?.width).toBeGreaterThan(0);
+        expect(box1?.height).toBeGreaterThan(0);
+        expect(box2?.height).toBeGreaterThan(0);
     }
 })
 
