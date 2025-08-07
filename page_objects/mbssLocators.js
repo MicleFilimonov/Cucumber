@@ -113,6 +113,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы ROX STAGE": '//*[@data-message-id="44" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы ROX STAGE": '//*[@data-message-id="44_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы ROX STAGE": '//*[@data-message-id="44_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы ROX MASTER": '//*[@data-message-id="309" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы ROX MASTER": '//*[@data-message-id="309_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы ROX MASTER": '//*[@data-message-id="309_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы ROX MASTER": '//*[@data-message-id="310" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы ROX MASTER": '//*[@data-message-id="310_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы ROX MASTER": '//*[@data-message-id="310_1" and .//span[text()="Ответ 4"]]',
         
         //MARTIN
         "Обязательный вопрос пре-формы MARTIN STAGE": '//*[@data-message-id="45" and .//span[text()="Обязательный вопрос"]]',
@@ -121,6 +127,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы MARTIN STAGE": '//*[@data-message-id="46" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы MARTIN STAGE": '//*[@data-message-id="46_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы MARTIN STAGE": '//*[@data-message-id="46_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы MARTIN MASTER": '//*[@data-message-id="311" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы MARTIN MASTER": '//*[@data-message-id="311_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы MARTIN MASTER": '//*[@data-message-id="311_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы MARTIN MASTER": '//*[@data-message-id="312" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы MARTIN MASTER": '//*[@data-message-id="312_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы MARTIN MASTER": '//*[@data-message-id="312_1" and .//span[text()="Ответ 4"]]',
         
         //DRIP
         "Обязательный вопрос пре-формы DRIP STAGE": '//*[@data-message-id="159" and .//span[text()="Обязательный вопрос"]]',
@@ -129,6 +141,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы DRIP STAGE": '//*[@data-message-id="160" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы DRIP STAGE": '//*[@data-message-id="160_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы DRIP STAGE": '//*[@data-message-id="160_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы DRIP MASTER": '//*[@data-message-id="313" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы DRIP MASTER": '//*[@data-message-id="313_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы DRIP MASTER": '//*[@data-message-id="313_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы DRIP MASTER": '//*[@data-message-id="314" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы DRIP MASTER": '//*[@data-message-id="314_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы DRIP MASTER": '//*[@data-message-id="314_1" and .//span[text()="Ответ 4"]]',
 
         //SOL
         "Обязательный вопрос пре-формы SOL STAGE": '//*[@data-message-id="161" and .//span[text()="Обязательный вопрос"]]',
@@ -137,6 +155,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы SOL STAGE": '//*[@data-message-id="162" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы SOL STAGE": '//*[@data-message-id="162_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы SOL STAGE": '//*[@data-message-id="162_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы SOL MASTER": '//*[@data-message-id="315" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы SOL MASTER": '//*[@data-message-id="315_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы SOL MASTER": '//*[@data-message-id="315_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы SOL MASTER": '//*[@data-message-id="316" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы SOL MASTER": '//*[@data-message-id="316_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы SOL MASTER": '//*[@data-message-id="316_1" and .//span[text()="Ответ 4"]]',
 
         //IZZI
         "Обязательный вопрос пре-формы IZZI STAGE": '//*[@data-message-id="163" and .//span[text()="Обязательный вопрос"]]',
@@ -145,6 +169,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы IZZI STAGE": '//*[@data-message-id="164" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы IZZI STAGE": '//*[@data-message-id="164_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы IZZI STAGE": '//*[@data-message-id="164_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы IZZI STAGE": '//*[@data-message-id="317" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы IZZI STAGE": '//*[@data-message-id="317_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы IZZI STAGE": '//*[@data-message-id="317_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы IZZI STAGE": '//*[@data-message-id="318" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы IZZI STAGE": '//*[@data-message-id="318_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы IZZI STAGE": '//*[@data-message-id="318_1" and .//span[text()="Ответ 4"]]',
 
         //VOLNA
         "Обязательный вопрос пре-формы VOLNA STAGE": '//*[@data-message-id="167" and .//span[text()="Обязательный вопрос"]]',
@@ -153,6 +183,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы VOLNA STAGE": '//*[@data-message-id="168" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы VOLNA STAGE": '//*[@data-message-id="168_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы VOLNA STAGE": '//*[@data-message-id="168_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы VOLNA STAGE": '//*[@data-message-id="319" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы VOLNA STAGE": '//*[@data-message-id="319_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы VOLNA STAGE": '//*[@data-message-id="319_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы VOLNA STAGE": '//*[@data-message-id="320" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы VOLNA STAGE": '//*[@data-message-id="320_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы VOLNA STAGE": '//*[@data-message-id="320_1" and .//span[text()="Ответ 4"]]',
 
         //STARDA
         "Обязательный вопрос пре-формы STARDA STAGE": '//*[@data-message-id="169" and .//span[text()="Обязательный вопрос"]]',
@@ -161,6 +197,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы STARDA STAGE": '//*[@data-message-id="170" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы STARDA STAGE": '//*[@data-message-id="170_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы STARDA STAGE": '//*[@data-message-id="170_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы STARDA STAGE": '//*[@data-message-id="321" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы STARDA STAGE": '//*[@data-message-id="321_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы STARDA STAGE": '//*[@data-message-id="321_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы STARDA STAGE": '//*[@data-message-id="322" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы STARDA STAGE": '//*[@data-message-id="322_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы STARDA STAGE": '//*[@data-message-id="322_1" and .//span[text()="Ответ 4"]]',
 
         //MONRO
         "Обязательный вопрос пре-формы MONRO STAGE": '//*[@data-message-id="171" and .//span[text()="Обязательный вопрос"]]',
@@ -169,6 +211,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы MONRO STAGE": '//*[@data-message-id="172" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы MONRO STAGE": '//*[@data-message-id="172_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы MONRO STAGE": '//*[@data-message-id="172_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы MONRO STAGE": '//*[@data-message-id="323" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы MONRO STAGE": '//*[@data-message-id="323_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы MONRO STAGE": '//*[@data-message-id="323_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы MONRO STAGE": '//*[@data-message-id="324" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы MONRO STAGE": '//*[@data-message-id="324_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы MONRO STAGE": '//*[@data-message-id="324_1" and .//span[text()="Ответ 4"]]',
 
         //1GO
         "Обязательный вопрос пре-формы 1GO STAGE": '//*[@data-message-id="173" and .//span[text()="Обязательный вопрос"]]',
@@ -177,6 +225,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы 1GO STAGE": '//*[@data-message-id="174" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы 1GO STAGE": '//*[@data-message-id="174_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы 1GO STAGE": '//*[@data-message-id="174_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы 1GO STAGE": '//*[@data-message-id="325" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы 1GO STAGE": '//*[@data-message-id="325_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы 1GO STAGE": '//*[@data-message-id="325_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы 1GO STAGE": '//*[@data-message-id="326" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы 1GO STAGE": '//*[@data-message-id="326_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы 1GO STAGE": '//*[@data-message-id="326_1" and .//span[text()="Ответ 4"]]',
 
         //LEX
         "Обязательный вопрос пре-формы LEX STAGE": '//*[@data-message-id="175" and .//span[text()="Обязательный вопрос"]]',
@@ -185,6 +239,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы LEX STAGE": '//*[@data-message-id="176" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы LEX STAGE": '//*[@data-message-id="176_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы LEX STAGE": '//*[@data-message-id="176_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы LEX STAGE": '//*[@data-message-id="327" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы LEX STAGE": '//*[@data-message-id="327_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы LEX STAGE": '//*[@data-message-id="327_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы LEX STAGE": '//*[@data-message-id="328" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы LEX STAGE": '//*[@data-message-id="328_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы LEX STAGE": '//*[@data-message-id="328_1" and .//span[text()="Ответ 4"]]',
 
         //GIZBO
         "Обязательный вопрос пре-формы GIZBO STAGE": '//*[@data-message-id="34" and .//span[text()="Обязательный вопрос"]]',
@@ -193,6 +253,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы GIZBO STAGE": '//*[@data-message-id="177" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы GIZBO STAGE": '//*[@data-message-id="177_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы GIZBO STAGE": '//*[@data-message-id="177_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы GIZBO STAGE": '//*[@data-message-id="329" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы GIZBO STAGE": '//*[@data-message-id="329_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы GIZBO STAGE": '//*[@data-message-id="329_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы GIZBO STAGE": '//*[@data-message-id="330" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы GIZBO STAGE": '//*[@data-message-id="330_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы GIZBO STAGE": '//*[@data-message-id="330_1" and .//span[text()="Ответ 4"]]',
 
         //IRWIN
         "Обязательный вопрос пре-формы IRWIN STAGE": '//*[@data-message-id="178" and .//span[text()="Обязательный вопрос"]]',
@@ -201,6 +267,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы IRWIN STAGE": '//*[@data-message-id="179" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы IRWIN STAGE": '//*[@data-message-id="179_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы IRWIN STAGE": '//*[@data-message-id="179_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы IRWIN STAGE": '//*[@data-message-id="335" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы IRWIN STAGE": '//*[@data-message-id="335_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы IRWIN STAGE": '//*[@data-message-id="335_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы IRWIN STAGE": '//*[@data-message-id="336" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы IRWIN STAGE": '//*[@data-message-id="336_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы IRWIN STAGE": '//*[@data-message-id="336_1" and .//span[text()="Ответ 4"]]',
 
         //FLAGMAN
         "Обязательный вопрос пре-формы FLAGMAN STAGE": '//*[@data-message-id="180" and .//span[text()="Обязательный вопрос"]]',
@@ -209,6 +281,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы FLAGMAN STAGE": '//*[@data-message-id="181" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы FLAGMAN STAGE": '//*[@data-message-id="181_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы FLAGMAN STAGE": '//*[@data-message-id="181_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы FLAGMAN STAGE": '//*[@data-message-id="337" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы FLAGMAN STAGE": '//*[@data-message-id="337_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы FLAGMAN STAGE": '//*[@data-message-id="337_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы FLAGMAN STAGE": '//*[@data-message-id="338" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы FLAGMAN STAGE": '//*[@data-message-id="338_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы FLAGMAN STAGE": '//*[@data-message-id="338_1" and .//span[text()="Ответ 4"]]',
         
         //JET
         "Обязательный вопрос пре-формы JET STAGE": '//*[@data-message-id="165" and .//span[text()="Обязательный вопрос"]]',
@@ -217,6 +295,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы JET STAGE": '//*[@data-message-id="166" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы JET STAGE": '//*[@data-message-id="166_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы JET STAGE": '//*[@data-message-id="166_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы JET STAGE": '//*[@data-message-id="339" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы JET STAGE": '//*[@data-message-id="339_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы JET STAGE": '//*[@data-message-id="339_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы JET STAGE": '//*[@data-message-id="340" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы JET STAGE": '//*[@data-message-id="340_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы JET STAGE": '//*[@data-message-id="340_1" and .//span[text()="Ответ 4"]]',
 
 
         // Функциональные локаторы 

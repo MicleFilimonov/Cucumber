@@ -171,7 +171,7 @@ When('Я перезагружаю текущую страницу', async functi
 });
 
 // Шаг для указания ожидания в секундах 
-When('Я жду {string} секунд\\(ы)', { timeout: 120 * 1000 }, async function (seconds) {
+When('Я жду {string} секунд\\(ы)', { timeout: 500 * 1000 }, async function (seconds) {
     const milliseconds = Number(seconds) * 1000
     await this.page.waitForTimeout(milliseconds);
 });
