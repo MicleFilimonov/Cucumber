@@ -12,6 +12,7 @@ class World {
     this.browser = null; // Экземпляр браузера
     this.page = null; // Текущая вкладка
     this.newPage = null; // Новая вкладка 
+    this.consoleLogs = []; // Массив для сбора логов консоли бразуера
     this.generatedMessage = ''; // Переменная для хранения сообщения
     this.token = null; // Определение токена
     this.requestHeaders = null; //Опреление заголовков

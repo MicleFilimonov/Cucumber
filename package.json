@@ -24,7 +24,6 @@
     "test:WebRox": "cross-env PROJECT=ROX DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-rox-web.json",
     "test:WebVolna": "cross-env PROJECT=VOLNA DEVICE=web npx cucumber-js features/WEB.feature --format json:./reports/report-volna-web.json",
     "test:WebAll": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:Web1go test:WebStarda test:WebVolna test:WebRox test:WebFlagman test:WebIrwin test:WebDrip test:WebStarda test:WebLegzo test:WebJet test:WebSol test:WebFresh test:WebIzzi",
-    "test:ChosenWeb": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:WebIzzi report ",
    
     "test:MobLegzo": "cross-env PROJECT=LEGZO DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-legzo-mob.json",
     "test:MobSol": "cross-env PROJECT=SOL DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-sol-mob.json",
@@ -43,14 +42,8 @@
     "test:MobRox": "cross-env PROJECT=ROX DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-rox-mob.json",
     "test:MobVolna": "cross-env PROJECT=VOLNA DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-volna-mob.json",
     "test:MobAll": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error ",
-    "test:ChosenMob": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:MobIzzi report ",
-   
-   
-    "test:Chosen": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:WebLegzo test:MobLegzo report",
-   
    
     "test:devFile": "cross-env ENV=STAGE PROJECT=1GO DEVICE=mobile npx cucumber-js features/devFile.feature --format json:./reports/report.json",
-
     "test:devFileLegzo": "cross-env PROJECT=LEGZO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-legzo-dev.json",
     "test:devFileSol": "cross-env PROJECT=SOL DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-sol-dev.json",
     "test:devFileFresh": "cross-env PROJECT=FRESH DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-fresh-dev.json",
@@ -67,11 +60,13 @@
     "test:devFile1go": "cross-env PROJECT=1GO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-1go-dev.json",
     "test:devFileRox": "cross-env PROJECT=ROX DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-rox-dev.json",
     "test:devFileVolna": "cross-env PROJECT=VOLNA DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-volna-dev.json",
-
     "test:devAll": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:devFileVolna test:devFileRox test:devFile1go test:devFileMartin test:devFileFlagman test:devFileIrwin test:devFileGizbo test:devFileMonro test:devFileDrip test:devFileLex test:devFileStarda test:devFileIzzi test:devFileJet  test:devFileFresh test:devFileSol test:devFileLegzo report",
-    "test:devChosen": "cross-env ENV=MASTER npm-run-all --sequential --continue-on-error test:devFile1go report ",
-   
-   
+    
+    
+    "test:devChosen": "cross-env ENV=DEV npm-run-all --sequential --continue-on-error test:devFileLegzo report ",
+    
+    "test:Chosen": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:WebLegzo test:MobLegzo report",
+
     "report": "node generateReport.js", 
     "clean:artifacts": "rimraf --glob reports/*.json reports/html reports/*.html reports/screenshots \"screenshots/*\"",
     "generate-report-in-file": "node reportForTeam.js"
