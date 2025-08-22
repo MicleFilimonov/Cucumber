@@ -21,6 +21,7 @@ export const siteLocator = {
         'MBSS поддержка': '//*[@data-test="support-livechat"]', //Вероятно с раскаткой MBSS измениться - проверить после полной интеграции на всех проектах
 
         'Активатор': '//*[@class="activator-button"]',
+        'Лого сайта': '//*[@data-test="logo_casino"]',
 
 
         // MOBILE
