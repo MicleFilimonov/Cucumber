@@ -41,7 +41,7 @@
     "test:MobRox": "cross-env PROJECT=ROX DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-rox-mob.json",
     "test:MobVolna": "cross-env PROJECT=VOLNA DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-volna-mob.json",
    
-    "test:devFile": "cross-env ENV=STAGE PROJECT=1GO DEVICE=mobile npx cucumber-js features/devFile.feature --format json:./reports/report.json",
+    "test:devFile": "cross-env ENV=STAGE PROJECT=LEGZO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report.json",
     "test:devFileLegzo": "cross-env PROJECT=LEGZO npx cucumber-js features/devFile.feature --format json:./reports/report-legzo-dev.json",
     "test:devFileSol": "cross-env PROJECT=SOL npx cucumber-js features/devFile.feature --format json:./reports/report-sol-dev.json",
     "test:devFileFresh": "cross-env PROJECT=FRESH npx cucumber-js features/devFile.feature --format json:./reports/report-fresh-dev.json",

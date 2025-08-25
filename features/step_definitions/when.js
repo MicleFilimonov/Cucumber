@@ -13,16 +13,15 @@ When('Я открываю саппорт', async function () {
     const siteUrl = baseUrl + postfix
 
 
-    await this.page.goto(siteUrl); // Переходим на указанный URL
-
+    await this.page.goto(siteUrl, { waitUntil: 'domcontentloaded' }); // Переходим на указанный URL
 });
 
 // Шаг для ожидания полной загрузки всей страницы - картинки, скрипты, стили
 When('Я жду полной загрузки страницы', async function () {
-  // дождаться события полной загрузки
-  // load — страница и все ресурсы (картинки, скрипты, стили) загружены.
-  await this.page.waitForLoadState('load'); 
- 
+    // дождаться события полной загрузки
+    // load — страница и все ресурсы (картинки, скрипты, стили) загружены.
+    await this.page.waitForLoadState('load');
+
 });
 
 // заполняю элемент данными в определенном месте (из за общих названий локаторов)
