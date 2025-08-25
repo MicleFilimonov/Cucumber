@@ -23,6 +23,29 @@ Given('Я нахожусь на проекте', async function () {
   }
 });
 
+
+// Шаг для открытия админки 
+Given('Я нахожусь на странице {string}', async function (location) {
+  
+  const envName = `${this.env}`
+  const siteName = `${location} ${envName}`
+  const siteUrl = pageObjects.url[siteName];
+
+  // Если еще нет браузера, открываем новый
+  if (!this.page) {
+    if (process.env.DEVICE === 'mobile') {
+      await this.openMobileBrowser();
+      await this.mobilePage.goto(siteUrl, { waitUntil: 'domcontentloaded' });
+    } else {
+      await this.openWebBrowser();
+      await this.page.goto(siteUrl, { waitUntil: 'domcontentloaded' });
+    }
+  } else {
+    // Если браузер уже открыт, просто переходим на нужный сайт
+    await this.page.goto(siteUrl, { waitUntil: 'domcontentloaded' });
+  }
+});
+
 Given('Я нахожусь на проекте без авторизации', async function () {
 
   const siteName = `${this.project} ${this.env}`;
