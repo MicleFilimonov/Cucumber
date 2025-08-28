@@ -19,6 +19,7 @@ export const url = {
         'FLAGMAN DEV': process.env.FLAGMAN_DEV,
         '1GO DEV': process.env.ONEGO_DEV,
         'IRWIN DEV': process.env.IRWIN_DEV,
+        'NIKA DEV': process.env.NIKA_DEV,
 
         'LEGZO STAGE': process.env.LEGZO_STAGE,
         'JET STAGE': process.env.JET_STAGE,
@@ -56,7 +57,8 @@ export const url = {
 
         'Админка DEV': process.env.ADMIN_PANEL_DEV,
         'Админка STAGE': process.env.ADMIN_PANEL_STAGE,
-        'Админка MASTER': process.env.ADMIN_PANEL_MASTER
+        'Админка MASTER': process.env.ADMIN_PANEL_MASTER,
+        'TORUS DEV': process.env.TORUS_PANEL_DEV
 };
 
 
