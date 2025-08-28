@@ -186,7 +186,7 @@ When('Я жду {string} секунд\\(ы)', { timeout: 500 * 1000 }, async fun
 // Шаг для открытия страницы в новой вкладке текущего браузера
 When('Я открываю {string} в новой вкладке', async function (location) {
 
-    const siteUrl = pageObjects.url[`${location} ${this.env}`]; // Получаем URL
+    const siteUrl = pageObjects.url[`${location} ${this.cluster} ${this.env}`]; // Получаем URL
 
     await this.openNewTab();
     await this.newPage.goto(siteUrl); // Переходим на указанный URL
@@ -278,7 +278,7 @@ When('Я отслеживаю и получаю ответ запроса {strin
 // Шаг для мобильных проверок - открывает админку в новом брузере нормального размера
 When('Я открываю {string} в новом браузере', async function (location) {
 
-    const siteName = `${location} ${this.env}`;
+    const siteName = `${location} ${this.cluster}  ${this.env}`;
     const siteUrl = pageObjects.url[siteName]; // Получаем URL
 
     // Открытие нового браузера для desktop

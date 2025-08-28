@@ -20,12 +20,14 @@ class World {
     this.project = (process.env.PROJECT || '').toUpperCase();//переменная проекта для скрипта запуска
     this.env = (process.env.ENV || '').toUpperCase();//переменная окружения для скрипта запуска
     this.device = (process.env.DEVICE || 'web').toLowerCase();//переменная устройства для скрипта запуска
+    this.cluster = (process.env.CLUSTER || 'MBSS').toUpperCase();//переменная кластера для скрипта запуска
+
   }
 
   // Инициализация бразуера в мобильном разрешении (изменяется в завимисости от указанного устройства)
   async openMobileBrowser() {
     // Инициализация экземпляра браузера
-    this.mobileBrowser = await chromium.launch({ headless: false });
+    this.mobileBrowser = await chromium.launch({ headless: true });
     // Инициализация контекста браузера (передаем константу mobileDevice для мобильной версии)
     this.mobileContext = await this.mobileBrowser.newContext({ 
       ...mobileDevice 
@@ -37,7 +39,7 @@ class World {
 
   // Инициализация бразуера в разрешении 1366х768
   async openWebBrowser() {
-    this.desktopBrowser = await chromium.launch({ headless: false });
+    this.desktopBrowser = await chromium.launch({ headless: true });
     this.desktopContext = await this.desktopBrowser.newContext({
       viewport: { width: 1366, height: 768 }
     });

@@ -26,9 +26,8 @@ Given('Я нахожусь на проекте', async function () {
 
 // Шаг для открытия админки 
 Given('Я нахожусь на странице {string}', async function (location) {
-  
-  const envName = `${this.env}`
-  const siteName = `${location} ${envName}`
+
+  const siteName = `${location} ${this.cluster} ${this.env}`
   const siteUrl = pageObjects.url[siteName];
 
   // Если еще нет браузера, открываем новый

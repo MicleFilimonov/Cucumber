@@ -19,6 +19,7 @@ export const url = {
         'FLAGMAN DEV': process.env.FLAGMAN_DEV,
         '1GO DEV': process.env.ONEGO_DEV,
         'IRWIN DEV': process.env.IRWIN_DEV,
+        'MARTIN DEV': process.env.MARTIN_DEV,
         'NIKA DEV': process.env.NIKA_DEV,
 
         'LEGZO STAGE': process.env.LEGZO_STAGE,
@@ -37,6 +38,7 @@ export const url = {
         '1GO STAGE': process.env.ONEGO_STAGE,
         'IRWIN STAGE': process.env.IRWIN_STAGE,
         'MARTIN STAGE': process.env.MARTIN_STAGE,
+        'NIKA STAGE': process.env.NIKA_STAGE,
 
 
         'LEGZO MASTER': process.env.LEGZO_MASTER,
@@ -55,10 +57,11 @@ export const url = {
         '1GO MASTER': process.env.ONEGO_MASTER,
         'IRWIN MASTER': process.env.IRWIN_MASTER,
 
-        'Админка DEV': process.env.ADMIN_PANEL_DEV,
-        'Админка STAGE': process.env.ADMIN_PANEL_STAGE,
-        'Админка MASTER': process.env.ADMIN_PANEL_MASTER,
-        'TORUS DEV': process.env.TORUS_PANEL_DEV
+        'Админка MBSS DEV': process.env.ADMIN_PANEL_DEV,
+        'Админка MBSS STAGE': process.env.ADMIN_PANEL_STAGE,
+        'Админка MBSS MASTER': process.env.ADMIN_PANEL_MASTER,
+        'Админка TORUS DEV': process.env.ADMIN_PANEL_TORUS_DEV,
+        'Админка TORUS STAGE': process.env.ADMIN_PANEL_TORUS_STAGE
 };
 
 
