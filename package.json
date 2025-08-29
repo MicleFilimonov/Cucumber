@@ -43,7 +43,7 @@
     "test:MobVolna": "cross-env CLUSTER=MBSS PROJECT=VOLNA DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-volna-mob.json",
     "test:MobNika": "cross-env CLUSTER=TORUS PROJECT=NIKA DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-volna-mob.json",
    
-    "test:devFile": "cross-env ENV=MASTER CLUSTER=MBSS PROJECT=LEGZO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-dev.json",
+    "test:devFile": "cross-env ENV=STAGE CLUSTER=MBSS PROJECT=SOL DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-dev.json",
     "test:devFileLegzo": "cross-env CLUSTER=MBSS PROJECT=LEGZO npx cucumber-js features/devFile.feature --format json:./reports/report-legzo-dev.json",
     "test:devFileSol": "cross-env CLUSTER=MBSS PROJECT=SOL npx cucumber-js features/devFile.feature --format json:./reports/report-sol-dev.json",
     "test:devFileFresh": "cross-env CLUSTER=MBSS PROJECT=FRESH npx cucumber-js features/devFile.feature --format json:./reports/report-fresh-dev.json",
@@ -69,6 +69,8 @@
     "test:devChosen": "cross-env ENV=STAGE DEVICE=mobile npm-run-all --sequential --continue-on-error report ",
     
     "test:Chosen": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:WebLegzo test:WebSol test:WebFresh test:WebJet test:WebIzzi test:WebLex test:WebDrip test:WebGizbo test:WebIrwin test:WebFlagman test:Web1go test:MobLegzo test:MobSol test:MobFresh test:MobJet test:MobIzzi test:MobLex test:MobDrip test:MobGizbo test:MobIrwin test:MobFlagman test:Mob1go report",
+    
+    "test:repeat": "cross-env ENV=DEV npm-run-all --sequential --continue-on-error test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo ",
 
     "report": "node generateReport.js", 
     "clean:artifacts": "rimraf --glob reports/*.json reports/html reports/*.html reports/screenshots \"screenshots/*\"",
