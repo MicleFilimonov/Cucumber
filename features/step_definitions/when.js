@@ -278,7 +278,7 @@ When('Я отслеживаю и получаю ответ запроса {strin
 // Шаг для мобильных проверок - открывает админку в новом брузере нормального размера
 When('Я открываю {string} в новом браузере', async function (location) {
 
-    const siteName = `${location} ${this.cluster}  ${this.env}`;
+    const siteName = `${location} ${this.cluster} ${this.env}`;
     const siteUrl = pageObjects.url[siteName]; // Получаем URL
 
     // Открытие нового браузера для desktop
