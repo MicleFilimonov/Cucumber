@@ -42,6 +42,7 @@ export const mbssLocator = {
         "Test ROX":'//*[text()= "Test ROX"]',
         "Test VOLNA":'//*[text()= "Test VOLNA"]',
         "Test LEGZO":'//*[text()= "Test LEGZO"]',
+        "Test NIKA":'//*[text()= "Test NIKA"]',
 
         "Системное оператор общается LEGZO": `//*[text()= "С вами общается legzo_operator"]`,
         "Системное оператор общается SOL": `//*[text()= "С вами общается sol_operator"]`,
@@ -59,6 +60,7 @@ export const mbssLocator = {
         "Системное оператор общается MARTIN": `//*[text()= "С вами общается martin_operator"]`,
         "Системное оператор общается ROX": `//*[text()= "С вами общается rox_operator"]`,
         "Системное оператор общается VOLNA": `//*[text()= "С вами общается volna_operator"]`,
+        "Системное оператор общается NIKA": `//*[text()= "С вами общается nika_operator"]`,
         
         "Системное оператор завершил LEGZO": `//*[text()= "legzo_operator завершил чат"]`,
         "Системное оператор завершил SOL": `//*[text()= "sol_operator завершил чат"]`,
@@ -76,6 +78,7 @@ export const mbssLocator = {
         "Системное оператор завершил MARTIN": `//*[text()= "martin_operator завершил чат"]`,
         "Системное оператор завершил ROX": `//*[text()= "rox_operator завершил чат"]`,
         "Системное оператор завершил VOLNA": `//*[text()= "volna_operator завершил чат"]`,
+        "Системное оператор завершил NIKA": `//*[text()= "nika_operator завершил чат"]`,
 
         //Локаторы пре-форм 
         //LEGZO
@@ -331,6 +334,15 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы JET MASTER": '//*[@data-message-id="340" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы JET MASTER": '//*[@data-message-id="340_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы JET MASTER": '//*[@data-message-id="340_1" and .//span[text()="Ответ 4"]]',
+
+        //NIKA
+        "Обязательный вопрос пре-формы NIKA MASTER": '//*[@data-message-id="1" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы NIKA MASTER": '//*[@data-message-id="1_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы NIKA MASTER": '//*[@data-message-id="1_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы NIKA MASTER": '//*[@data-message-id="2" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы NIKA MASTER": '//*[@data-message-id="2_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы NIKA MASTER": '//*[@data-message-id="2_1" and .//span[text()="Ответ 4"]]',
+
 
 
         // Функциональные локаторы 

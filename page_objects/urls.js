@@ -56,12 +56,15 @@ export const url = {
         'FLAGMAN MASTER': process.env.FLAGMAN_MASTER,
         '1GO MASTER': process.env.ONEGO_MASTER,
         'IRWIN MASTER': process.env.IRWIN_MASTER,
+        'NIKA MASTER': process.env.NIKA_MASTER,
+
 
         'Админка MBSS DEV': process.env.ADMIN_PANEL_DEV,
         'Админка MBSS STAGE': process.env.ADMIN_PANEL_STAGE,
         'Админка MBSS MASTER': process.env.ADMIN_PANEL_MASTER,
         'Админка TORUS DEV': process.env.ADMIN_PANEL_TORUS_DEV,
-        'Админка TORUS STAGE': process.env.ADMIN_PANEL_TORUS_STAGE
+        'Админка TORUS STAGE': process.env.ADMIN_PANEL_TORUS_STAGE,
+        'Админка TORUS MASTER': process.env.ADMIN_PANEL_TORUS_MASTER
 };
 
 
