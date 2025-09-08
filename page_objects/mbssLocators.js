@@ -26,6 +26,7 @@ export const mbssLocator = {
         'Поле ввода сообщения в виджете': '//*[@id="mbss-message-text-input"]',
         'Закрыть комнату в виджете': '//*[@id="mbss-close-chat-btn"]',
         'Кнопка подтверждения в виджете': '//*[@id="mbss-close-confirmation-btn"]',
+        
         "Test SOL":'//*[text()= "Test SOL"]',
         "Test FRESH":'//*[text()= "Test FRESH"]',
         "Test JET":'//*[text()= "Test JET"]',
@@ -150,12 +151,6 @@ export const mbssLocator = {
         "Ответ 2 не обязательной пре-формы MARTIN MASTER": '//*[@data-message-id="312_1" and .//span[text()="Ответ 4"]]',
         
         //DRIP
-        "Обязательный вопрос пре-формы DRIP DEV": '//*[@data-message-id="1282" and .//span[text()="Обязательный вопрос"]]',
-        "Ответ 1 обязательной пре-формы DRIP DEV": '//*[@data-message-id="1282_0" and .//span[text()="Ответ 1"]]',
-        "Ответ 2 обязательной пре-формы DRIP DEV": '//*[@data-message-id="1282_1" and .//span[text()="Ответ 2"]]',
-        "Не обязательный вопрос пре-формы DRIP DEV": '//*[@data-message-id="1283" and .//span[text()="Не обязательный вопрос"]]',
-        "Ответ 1 не обязательной пре-формы DRIP DEV": '//*[@data-message-id="1283_0" and .//span[text()="Ответ 3"]]',
-        "Ответ 2 не обязательной пре-формы DRIP DEV": '//*[@data-message-id="1283_1" and .//span[text()="Ответ 4"]]',
         "Обязательный вопрос пре-формы DRIP STAGE": '//*[@data-message-id="159" and .//span[text()="Обязательный вопрос"]]',
         "Ответ 1 обязательной пре-формы DRIP STAGE": '//*[@data-message-id="159_0" and .//span[text()="Ответ 1"]]',
         "Ответ 2 обязательной пре-формы DRIP STAGE": '//*[@data-message-id="159_1" and .//span[text()="Ответ 2"]]',
@@ -316,12 +311,12 @@ export const mbssLocator = {
         "Ответ 2 не обязательной пре-формы FLAGMAN MASTER": '//*[@data-message-id="338_1" and .//span[text()="Ответ 4"]]',
         
         //JET
-        "Обязательный вопрос пре-формы JET JET": '//*[@data-message-id="1272" and .//span[text()="Обязательный вопрос"]]',
-        "Ответ 1 обязательной пре-формы JET JET": '//*[@data-message-id="1272_0" and .//span[text()="Ответ 1"]]',
-        "Ответ 2 обязательной пре-формы JET JET": '//*[@data-message-id="1272_1" and .//span[text()="Ответ 2"]]',
-        "Не обязательный вопрос пре-формы JET JET": '//*[@data-message-id="1273" and .//span[text()="Не обязательный вопрос"]]',
-        "Ответ 1 не обязательной пре-формы JET JET": '//*[@data-message-id="1273_0" and .//span[text()="Ответ 3"]]',
-        "Ответ 2 не обязательной пре-формы JET JET": '//*[@data-message-id="1273_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы JET DEV": '//*[@data-message-id="1272" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы JET DEV": '//*[@data-message-id="1272_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы JET DEV": '//*[@data-message-id="1272_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы JET DEV": '//*[@data-message-id="1273" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы JET DEV": '//*[@data-message-id="1273_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы JET DEV": '//*[@data-message-id="1273_1" and .//span[text()="Ответ 4"]]',
         "Обязательный вопрос пре-формы JET STAGE": '//*[@data-message-id="165" and .//span[text()="Обязательный вопрос"]]',
         "Ответ 1 обязательной пре-формы JET STAGE": '//*[@data-message-id="165_0" and .//span[text()="Ответ 1"]]',
         "Ответ 2 обязательной пре-формы JET STAGE": '//*[@data-message-id="165_1" and .//span[text()="Ответ 2"]]',
@@ -342,6 +337,12 @@ export const mbssLocator = {
         "Не обязательный вопрос пре-формы NIKA MASTER": '//*[@data-message-id="2" and .//span[text()="Не обязательный вопрос"]]',
         "Ответ 1 не обязательной пре-формы NIKA MASTER": '//*[@data-message-id="2_0" and .//span[text()="Ответ 3"]]',
         "Ответ 2 не обязательной пре-формы NIKA MASTER": '//*[@data-message-id="2_1" and .//span[text()="Ответ 4"]]',
+        "Обязательный вопрос пре-формы NIKA STAGE": '//*[@data-message-id="5" and .//span[text()="Обязательный вопрос"]]',
+        "Ответ 1 обязательной пре-формы NIKA STAGE": '//*[@data-message-id="5_0" and .//span[text()="Ответ 1"]]',
+        "Ответ 2 обязательной пре-формы NIKA STAGE": '//*[@data-message-id="5_1" and .//span[text()="Ответ 2"]]',
+        "Не обязательный вопрос пре-формы NIKA STAGE": '//*[@data-message-id="6" and .//span[text()="Не обязательный вопрос"]]',
+        "Ответ 1 не обязательной пре-формы NIKA STAGE": '//*[@data-message-id="6_0" and .//span[text()="Ответ 3"]]',
+        "Ответ 2 не обязательной пре-формы NIKA STAGE": '//*[@data-message-id="6_1" and .//span[text()="Ответ 4"]]',
 
 
 

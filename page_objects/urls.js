@@ -56,6 +56,7 @@ export const url = {
         'FLAGMAN MASTER': process.env.FLAGMAN_MASTER,
         '1GO MASTER': process.env.ONEGO_MASTER,
         'IRWIN MASTER': process.env.IRWIN_MASTER,
+        'MARTIN MASTER': process.env.MARTIN_MASTER,
         'NIKA MASTER': process.env.NIKA_MASTER,
 
 

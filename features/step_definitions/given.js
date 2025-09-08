@@ -3,7 +3,7 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 import { pageObjects } from '../../page_objects/pageObjects.js';
 
-
+//Шаг для открытия проекта
 Given('Я нахожусь на проекте', async function () {
 
   const siteName = `${this.project} ${this.env}`;
@@ -22,7 +22,6 @@ Given('Я нахожусь на проекте', async function () {
     await this.page.goto(siteUrl, { waitUntil: 'domcontentloaded' });
   }
 });
-
 
 // Шаг для открытия админки 
 Given('Я нахожусь на странице {string}', async function (location) {
@@ -45,6 +44,7 @@ Given('Я нахожусь на странице {string}', async function (loca
   }
 });
 
+//Шаг для открытия страницы проекта без авторизации
 Given('Я нахожусь на проекте без авторизации', async function () {
 
   const siteName = `${this.project} ${this.env}`;

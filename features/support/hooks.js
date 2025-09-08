@@ -16,32 +16,6 @@ Before(async function () {
 
   this.page.setDefaultTimeout(50 * 1000)//Рабочий таймаут
 
-  // Подписка на события в консоле браузера при работе теста 
-  this.page.on('console', msg => {
-    const type = msg.type().toUpperCase();
-    const text = msg.text();
-    const { url, lineNumber, columnNumber } = msg.location()
-    // Покарска для наглядности 
-    let color;
-    if (type === 'ERROR') color = 'red';
-    else if (type === 'WARNING') color = 'orange';
-    else color = 'black';
-    if (type === 'WARNING' || type === 'ERROR' || type === 'INFO' || type === 'LOG') {
-      this.consoleLogs.push(
-        `<span style="color:${color}">[${type}] ${text} : (${url}:${lineNumber}:${columnNumber})</span>`
-      );
-    }
-  });
-
-
-  //Подписка на получение хедеров запроса для последующей проверки 
-  this.page.on('requestfinished', (request) => {
-    const headers = request.headers();  // Получаем заголовки запроса
-    this.capturedRequests.push({
-      url: request.url(),
-      headers
-    });  // Сохраняем URL и хедеры запроса
-  });
 });
 
 

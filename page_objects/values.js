@@ -22,6 +22,7 @@ export const value = {
         'Оператора IRWIN': process.env.ADMIN_IRWIN_EMAIL,
         'Оператора FLAGMAN': process.env.ADMIN_FLAGMAN_EMAIL,
         'Оператора MARTIN': process.env.ADMIN_MARTIN_EMAIL,
+        'Оператора NIKA': process.env.ADMIN_NIKA_EMAIL,
 
         'Пароль оператора':process.env.ADMIN_PASSWORD
 };

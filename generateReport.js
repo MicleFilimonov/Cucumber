@@ -24,6 +24,7 @@ const fileProjectMap = {
   'report-1go-web.json': `1GO Web`,
   'report-rox-web.json': `ROX WEB`,
   'report-volna-web.json': `VOLNA WEB`,
+  'report-nika-web.json': `NIKA WEB`,
 
   'report-legzo-mob.json': `LEGZO MOBILE`,
   'report-sol-mob.json': `SOL MOBILE`,
@@ -41,6 +42,7 @@ const fileProjectMap = {
   'report-1go-mob.json': `1GO MOBILE`,
   'report-rox-mob.json': `ROX MOBILE`,
   'report-volna-mob.json': `VOLNA MOBILE`,
+  'report-nika-mob.json': `NIKA MOBILE`,
 
   'report-legzo-dev.json': `LEGZO DEVELOP, окружение: ${env}`,
   'report-sol-dev.json': `SOL DEVELOP, окружение: ${env}`,
@@ -58,6 +60,7 @@ const fileProjectMap = {
   'report-1go-dev.json': `1GO DEVELOP, окружение: ${env}`,
   'report-rox-dev.json': `ROX DEVELOP, окружение: ${env}`,
   'report-volna-dev.json': `VOLNA DEVELOP, окружение: ${env}`,
+  'report-nika-dev.json': `NIKA DEVELOP, окружение: ${env}`,
 };
 
 function renameFeatureInReports() {
