@@ -16,7 +16,7 @@ class World {
     this.generatedMessage = ''; // Переменная для хранения сообщения
     this.token = null; // Определение токена
     this.requestHeaders = null; //Опреление заголовков
-    this.capturedRequests = [] // массив для хранения реквестов
+    this.capturedRequests = [] // Массив для хранения реквестов
     this.attach = attach; // Определение прикрепленных файлов для отчета
     this.project = (process.env.PROJECT || '').toUpperCase();//переменная проекта для скрипта запуска
     this.env = (process.env.ENV || '').toUpperCase();//переменная окружения для скрипта запуска
