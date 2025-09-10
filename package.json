@@ -66,7 +66,7 @@
     "test:MobAll": "cross-env ENV=STAGE npm-run-all --sequential --continue-on-error test:MobLegzo test:MobSol test:MobFresh test:MobJet test:MobIzzi test:MobStarda test:MobLex test:MobDrip test:MobMonro test:MobGizbo test:MobIrwin test:MobFlagman test:MobMartin test:Mob1go test:MobRox test:MobVolna",
     "test:devAll": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:devFileLegzo test:devFileSol test:devFileFresh test:devFileJet test:devFileIzzi test:devFileStarda test:devFileLex test:devFileDrip test:devFileMonro test:devFileGizbo test:devFileIrwin test:devFileFlagman test:devFileMartin test:devFile1go test:devFileRox test:devFileVolna report",
     
-    "test:devChosen": "cross-env ENV=STAGE DEVICE=mobile npm-run-all --sequential --continue-on-error test:devFileDrip  report ",
+    "test:devChosen": "cross-env ENV=STAGE DEVICE=web npm-run-all --sequential --continue-on-error test:devFileDrip  report ",
     
     "test:Chosen": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:WebLegzo test:WebFresh test:WebDrip test:WebGizbo test:WebFlagman test:Web1go test:MobLegzo test:MobFresh test:MobDrip test:MobGizbo test:MobFlagman test:Mob1go report",
     
