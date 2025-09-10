@@ -43,7 +43,7 @@
     "test:MobVolna": "cross-env CLUSTER=MBSS PROJECT=VOLNA DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-volna-mob.json",
     "test:MobNika": "cross-env CLUSTER=TORUS PROJECT=NIKA DEVICE=mobile npx cucumber-js features/MOBILE.feature --format json:./reports/report-volna-mob.json",
    
-    "test:devFile": "cross-env ENV=STAGE CLUSTER=MBSS PROJECT=SOL DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-dev.json",
+    "test:devFile": "cross-env ENV=STAGE CLUSTER=MBSS PROJECT=LEGZO DEVICE=web npx cucumber-js features/devFile.feature --format json:./reports/report-dev.json",
     "test:devFileLegzo": "cross-env CLUSTER=MBSS PROJECT=LEGZO npx cucumber-js features/devFile.feature --format json:./reports/report-legzo-dev.json",
     "test:devFileSol": "cross-env CLUSTER=MBSS PROJECT=SOL npx cucumber-js features/devFile.feature --format json:./reports/report-sol-dev.json",
     "test:devFileFresh": "cross-env CLUSTER=MBSS PROJECT=FRESH npx cucumber-js features/devFile.feature --format json:./reports/report-fresh-dev.json",
@@ -68,7 +68,7 @@
     
     "test:devChosen": "cross-env ENV=STAGE DEVICE=web npm-run-all --sequential --continue-on-error test:devFileDrip  report ",
     
-    "test:Chosen": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:WebLegzo test:WebFresh test:WebDrip test:WebGizbo test:WebFlagman test:Web1go test:MobLegzo test:MobFresh test:MobDrip test:MobGizbo test:MobFlagman test:Mob1go report",
+    "test:Chosen": "cross-env ENV=MASTER npm-run-all --sequential clean:artifacts --continue-on-error test:WebLegzo test:WebFresh test:WebDrip test:WebGizbo test:WebFlagman test:Web1go test:WebIzzi test:WebJet test:WebLex test:WebSol test:MobLegzo test:MobFresh test:MobDrip test:MobGizbo test:MobFlagman test:Mob1go test:MobIzzi test:MobJet test:MobLex test:MobSol report",
     
     "test:repeat": "cross-env ENV=DEV npm-run-all --sequential --continue-on-error test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo ",
 
