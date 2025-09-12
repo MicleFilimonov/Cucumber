@@ -71,6 +71,16 @@ After(async function (scenario) {
     } catch (err) {
       console.error('Ошибка при создании скриншота:', err);
     }
+
+    if (this.currentBaseline && fs.existsSync(this.currentBaseline)) {
+      const baselineData = fs.readFileSync(this.currentBaseline);
+      await this.attach(baselineData, 'image/png');
+    }
+    if (this.currentDiff && fs.existsSync(this.currentDiff)) {
+      const diffData = fs.readFileSync(this.currentDiff);
+      await this.attach(diffData, 'image/png');
+    }
+
   }
 
   //Закрытие браузера

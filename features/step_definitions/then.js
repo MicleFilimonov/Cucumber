@@ -1,6 +1,10 @@
 import { Then, setDefaultTimeout } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { pageObjects } from '../../page_objects/pageObjects.js';
+import fs from 'fs';
+import path from 'path';
+import pixelmatch from 'pixelmatch';
+import { PNG } from 'pngjs';
 
 setDefaultTimeout(60 * 1000)
 
@@ -207,6 +211,78 @@ Then('Я получаю хедеры запроса {string} и сравнива
         console.log('Токен совпал');
     }
 });
+
+Then('Я проверяю верстку {string}', async function (element) {
+
+    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
+    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
+    const projectSpecificKey2 = `${element} ${this.project}`;
+
+    let locator
+    // Генерация локатора с использованием global.generatedMessage
+    if (pageObjects.locator[projectSpecificKey1]) {
+        locator = pageObjects.locator[projectSpecificKey1];
+    } else if (pageObjects.locator[projectSpecificKey2]) {
+        locator = pageObjects.locator[projectSpecificKey2];
+    } else if (pageObjects.locator[element]) {
+        locator = pageObjects.locator[element];
+    } else {
+        throw new Error(`Локатор не найден ни для "${projectSpecificKey1}", "${projectSpecificKey2}", ни для "${element}"`);
+    }
+
+    const givenElement = this.page.locator(locator)
+
+    // Папка для эталонов
+    const baselineDir = path.resolve('visual-baseline');
+    if (!fs.existsSync(baselineDir)) {
+        fs.mkdirSync(baselineDir);
+    }
+
+    const screenshotPath = path.join(baselineDir, `${element} ${this.project} ${this.env} ${this.device}.png`);
+    const currentImage = await givenElement.screenshot();
+
+    if (!fs.existsSync(screenshotPath) || process.env.UPDATE_SNAPSHOTS === '1') {
+        // Сохраняем эталон, если его нет или если явно попросили обновить
+        fs.writeFileSync(screenshotPath, currentImage);
+        console.log(`📸 Сохранён эталон: ${screenshotPath}`);
+        return;
+    }
+
+    // Сравнение
+    const baselineImage = PNG.sync.read(fs.readFileSync(screenshotPath));
+    const currentImageParsed = PNG.sync.read(currentImage);
+
+    if (
+        baselineImage.width !== currentImageParsed.width ||
+        baselineImage.height !== currentImageParsed.height
+    ) {
+        throw new Error(`Размеры скриншота не совпадают с эталоном для ${element}`);
+    }
+
+    const diff = new PNG({ width: baselineImage.width, height: baselineImage.height });
+
+    const mismatchedPixels = pixelmatch(
+        baselineImage.data,
+        currentImageParsed.data,
+        diff.data,
+        baselineImage.width,
+        baselineImage.height,
+        { threshold: 0.1 }
+    );
+
+    if (mismatchedPixels > 0) {
+        const diffPath = path.join(baselineDir, `${element} ${this.project} ${this.env} ${this.device}-diff.png`);
+        fs.writeFileSync(diffPath, PNG.sync.write(diff));
+        // Прикрепляем текущий эталон и diff именно для этого шага
+        this.currentBaseline = screenshotPath;  // путь эталона
+        this.currentDiff = diffPath;
+        throw new Error(
+            `Скриншот не совпадает с эталоном! См. diff: ${diffPath} (${mismatchedPixels} отличий)`
+        );
+    }
+
+    console.log(`✅ Скриншот совпал с эталоном: ${element}`);
+})
 
 
 

@@ -22,6 +22,8 @@ class World {
     this.env = (process.env.ENV || '').toUpperCase();//переменная окружения для скрипта запуска
     this.device = (process.env.DEVICE || 'web').toLowerCase();//переменная устройства для скрипта запуска
     this.cluster = (process.env.CLUSTER || 'MBSS').toUpperCase();//переменная кластера для скрипта запуска
+    this.currentBaseline = null;  // путь эталона
+    this.currentDiff = null;
 
   }
 

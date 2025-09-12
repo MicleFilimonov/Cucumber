@@ -1,3 +1,4 @@
 /.env
 /node_modules
-features/devFile.feature
+/features/devFile.feature/
+/visual-baseline/*-diff.png

@@ -84,6 +84,7 @@ function renameFeatureInReports() {
     content.forEach(feature => {
       if (feature.name) {
         feature.name = `${feature.name} - ${project}`;
+      } else if (!feature.name) {
       }
 
       feature.metadata = {
