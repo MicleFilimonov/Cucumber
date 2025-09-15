@@ -6,8 +6,6 @@ import path from 'path';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
 
-setDefaultTimeout(60 * 1000)
-
 // вижу или не вижу какой то элемент 
 Then('Я {string} {string}', async function (activity, element) {
 

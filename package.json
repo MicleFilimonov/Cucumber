@@ -71,7 +71,7 @@
     "test:repeat": "cross-env ENV=DEV npm-run-all --sequential --continue-on-error test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo test:devFileJet test:devFileSol test:devFileFresh test:devFileLegzo ",
     
     "report": "node generateReport.js",
-    "clean:artifacts": "rimraf --glob visual-baseline/*-diff.png reports/*.json reports/html reports/*.html reports/screenshots \"screenshots/*\"",
+    "clean:artifacts": "rimraf --glob visual-baseline/*-diff.png visual-baseline/*-current.png reports/*.json reports/html reports/*.html reports/screenshots \"screenshots/*\"",
     "generate-report-in-file": "node reportForTeam.js"
   },
   "author": "",
