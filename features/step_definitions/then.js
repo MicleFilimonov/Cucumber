@@ -11,24 +11,7 @@ setDefaultTimeout(60 * 1000)
 // вижу или не вижу какой то элемент 
 Then('Я {string} {string}', async function (activity, element) {
 
-    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
-    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
-    const projectSpecificKey2 = `${element} ${this.project}`;
-
-    let locator
-    // Генерация локатора с использованием global.generatedMessage
-    if (element === 'Тестовое сообщение') {
-        locator = `//*[contains(text(), "${global.generatedMessage}")]`;
-    } else if (pageObjects.locator[projectSpecificKey1]) {
-        locator = pageObjects.locator[projectSpecificKey1];
-    } else if (pageObjects.locator[projectSpecificKey2]) {
-        locator = pageObjects.locator[projectSpecificKey2];
-    } else if (pageObjects.locator[element]) {
-        locator = pageObjects.locator[element];
-    } else {
-        throw new Error(`Локатор не найден ни для "${projectSpecificKey1}", "${projectSpecificKey2}", ни для "${element}"`);
-    }
-
+    const locator = this.resolveLocator(element);
     const givenElement = this.page.locator(locator)
 
     if (activity === 'не вижу') {
@@ -45,8 +28,8 @@ Then('Я {string} {string}', async function (activity, element) {
 // вижу или не вижу элемент 1 и элемент 2
 Then('Я {string} {string} и {string}', async function (activity, element1, element2) {
 
-    const locator1 = pageObjects.locator[element1];
-    const locator2 = pageObjects.locator[element2]
+    const locator1 = this.resolveLocator(element1);
+    const locator2 = this.resolveLocator(element2);
     const givenElement1 = this.page.locator(locator1)
     const givenElement2 = this.page.locator(locator2)
 
@@ -62,7 +45,7 @@ Then('Я {string} {string} и {string}', async function (activity, element1, ele
         const box2 = await givenElement2.boundingBox();
 
         if (!box1 || !box2) {
-            throw new error('Один из элементов не имеет размеров в пикселях')
+            throw new Error('Один из элементов не имеет размеров в пикселях')
         }
         expect(box1?.width).toBeGreaterThan(0);
         expect(box2?.width).toBeGreaterThan(0);
@@ -118,7 +101,9 @@ Then('Я {string} {string} с текстом {string}', async function (activity
 // проверка конкретного элемента в админке, так как комнаты возвращаются массивом
 Then('В админке отображается {string}', async function (element) {
 
-    const locator = this.page.locator(pageObjects.locator[element]);
+    // Такая конструкция (через page.locator) нужна для получения кол-ва значений что 
+    // бы далее вызвать метод count
+    const locator = this.page.locator(this.resolveLocator(element));
 
     /* Проверка добавлена для админки, так как для комнат приходит массив 
     элементов и новая созданная комната всегда является первым 
@@ -145,7 +130,7 @@ Then('В админке отображается {string}', async function (elem
 
 // проверка на доступен/недоступен тестируемый элемент
 Then('Элемент {string} {string}', async function (element, state) {
-    const locator = pageObjects.locator[element];
+    const locator = this.resolveLocator(element);
     let givenElement = this.page.locator(locator)
 
     if (state === 'недоступен для нажатия') {
@@ -188,6 +173,7 @@ Then('Элемент {string} {string} зарендерился и кликаб�
     }
 });
 
+// Проверка полученных хедеров в запросе (прямой сравнение)
 Then('Я получаю хедеры запроса {string} и сравниваю с присвоенным токеном', async function (endpoint) {
     // Ищем в заголовках запросов токен, который был сохранён ранее
     const requestHeaders = this.capturedRequests.find(request => request.url.includes(endpoint))?.headers;
@@ -212,64 +198,96 @@ Then('Я получаю хедеры запроса {string} и сравнива
     }
 });
 
+// Шаг для тестировани верстки элемента
 Then('Я проверяю верстку {string}', async function (element) {
 
-    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
-    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
-    const projectSpecificKey2 = `${element} ${this.project}`;
-
-    let locator
-    // Генерация локатора с использованием global.generatedMessage
-    if (pageObjects.locator[projectSpecificKey1]) {
-        locator = pageObjects.locator[projectSpecificKey1];
-    } else if (pageObjects.locator[projectSpecificKey2]) {
-        locator = pageObjects.locator[projectSpecificKey2];
-    } else if (pageObjects.locator[element]) {
-        locator = pageObjects.locator[element];
-    } else {
-        throw new Error(`Локатор не найден ни для "${projectSpecificKey1}", "${projectSpecificKey2}", ни для "${element}"`);
-    }
-
+    const locator = this.resolveLocator(element);
+    //Складываем полученный элемент в переменную, к которой будем обращаться в дальнейшем
     const givenElement = this.page.locator(locator)
 
-    // Папка для эталонов
+    /*
+    Далее складываем путь к папке, в которой будут сохраняться эталоны при необходимости 
+    и скриншоты для сравнения при тестировании 
+    В случае, если папки нету - условие if создает такую папку 
+    */
     const baselineDir = path.resolve('visual-baseline');
     if (!fs.existsSync(baselineDir)) {
         fs.mkdirSync(baselineDir);
     }
 
+    /*
+    Создание имени для будущего скриншота 
+    В аргументах к join передается: 
+    - путь к папке 
+    - имя, состоящее из названия локатора, проекта, окружения и платформы
+    - разрешение .png
+    */
     const screenshotPath = path.join(baselineDir, `${element} ${this.project} ${this.env} ${this.device}.png`);
+    // Складываем в переменную текущий скриншот, сделанный с помощью команды screenshot()
     const currentImage = await givenElement.screenshot();
-
+    /* 
+    Условие говорит о том, что если скриншот c таким имененм отсутствует, 
+    или явно было запрошено обновить эталоны, то мы сохраняем скриншот без сравнения 
+    Это условие обязательно, так как оно проверяет наличие эталонных скринов, которые создаются 
+    при первичном прогоне кейсов с этим шагом 
+    Если эталон есть - читает информацию из него
+    */
     if (!fs.existsSync(screenshotPath) || process.env.UPDATE_SNAPSHOTS === '1') {
-        // Сохраняем эталон, если его нет или если явно попросили обновить
         fs.writeFileSync(screenshotPath, currentImage);
         console.log(`📸 Сохранён эталон: ${screenshotPath}`);
         return;
     }
-
-    // Сравнение
     const baselineImage = PNG.sync.read(fs.readFileSync(screenshotPath));
     const currentImageParsed = PNG.sync.read(currentImage);
 
+    // Сравнение высоты и ширины скриншота, ошибка и падение теста, если не совпадают
     if (
         baselineImage.width !== currentImageParsed.width ||
         baselineImage.height !== currentImageParsed.height
     ) {
-        throw new Error(`Размеры скриншота не совпадают с эталоном для ${element}`);
+
+        // Сохраняем текущее изображение элемента для дебага
+        const currentPath = path.join(
+            baselineDir,
+            `${element} ${this.project} ${this.env} ${this.device}-current.png`
+        );
+        fs.writeFileSync(currentPath, currentImage);
+
+        // Сохраняем пути для After-хука, что бы скрины прикрепились к отчету 
+        this.currentBaseline = screenshotPath;
+        this.currentDiff = currentPath;
+
+        throw new Error(
+            `Размеры скриншота не совпадают с эталоном для ${element}. ` +
+            `Эталон: ${baselineImage.width}x${baselineImage.height}, ` +
+            `Текущий: ${currentImageParsed.width}x${currentImageParsed.height}`
+        );
     }
 
+    /*
+    Создание скриншота DIFF - карты отличий между эталоном и сделанным скриншотом
+    такого же размера, как и эталон и последующий вызов pixelmatch 
+    */
     const diff = new PNG({ width: baselineImage.width, height: baselineImage.height });
 
+    // Записывает параметры сделанного скриншота для последующего сравнения
     const mismatchedPixels = pixelmatch(
         baselineImage.data,
         currentImageParsed.data,
         diff.data,
         baselineImage.width,
         baselineImage.height,
+        // для UI тестов параметр от 0.1 до 0.15, не выше
         { threshold: 0.1 }
     );
 
+
+    /*
+    Далее проверка на отклонение 
+    Если "промахнувшихся" пикселей больше 0, то происходит создание (запись) текущего скриншота 
+    под новым именем с суффиксом diff и задаются имена для прекрепления в отчет посредством 
+    after хука
+    */
     if (mismatchedPixels > 0) {
         const diffPath = path.join(baselineDir, `${element} ${this.project} ${this.env} ${this.device}-diff.png`);
         fs.writeFileSync(diffPath, PNG.sync.write(diff));
@@ -283,13 +301,3 @@ Then('Я проверяю верстку {string}', async function (element) {
 
     console.log(`✅ Скриншот совпал с эталоном: ${element}`);
 })
-
-
-
-
-
-
-
-
-
-

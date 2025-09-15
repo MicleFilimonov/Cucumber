@@ -1,6 +1,9 @@
 import { When } from '@cucumber/cucumber';
 import { pageObjects } from '../../page_objects/pageObjects.js';
 
+// const locator = this.resolveLocator(element);
+
+
 
 // Шаг для открытия саппорта по прямой ссылке (основной для работы тестов) 
 When('Я открываю саппорт', async function () {
@@ -27,20 +30,7 @@ When('Я жду полной загрузки страницы', async function 
 // заполняю элемент данными в определенном месте (из за общих названий локаторов)
 When('Я заполняю {string} данными {string}', async function (element, initValue) {
 
-    const projectSpecificLocator1 = `${element} ${this.project} ${this.env}`
-    const projectSpecificLocator2 = `${element} ${this.project}`
-    let locator
-
-    if (pageObjects.locator[projectSpecificLocator1]) {
-        locator = pageObjects.locator[projectSpecificLocator1]
-    } else if (pageObjects.locator[projectSpecificLocator2]) {
-        locator = pageObjects.locator[projectSpecificLocator2]
-    } else if (pageObjects.locator[element]) {
-        locator = pageObjects.locator[element]
-    } else {
-        throw new Error(`Локатор не найден для ${element} или ${projectSpecificLocator1} или ${projectSpecificLocator2}`)
-    }
-
+    const locator = this.resolveLocator(element);
 
     const projectSpecificKey1 = `${initValue} ${this.project} ${this.env}`;
     const projectSpecificKey2 = `${initValue} ${this.project}`;
@@ -65,23 +55,9 @@ When('Я заполняю {string} данными {string}', async function (ele
 // Нажатие на определенный элемент
 When('Я нажимаю на {string}', async function (element) {
 
-    let locator
-
-    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
-    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
-    const projectSpecificKey2 = `${element} ${this.project}`;
-
-    if (pageObjects.locator[projectSpecificKey1]) {
-        locator = pageObjects.locator[projectSpecificKey1];
-    } else if (pageObjects.locator[projectSpecificKey2]) {
-        locator = pageObjects.locator[projectSpecificKey2];
-    } else if (pageObjects.locator[element]) {
-        locator = pageObjects.locator[element];
-    } else {
-        throw new Error(`Локатор не найден ни для "${projectSpecificKey}", ни для "${element}"`);
-    }
-
+    const locator = this.resolveLocator(element);
     await this.page.click(locator);
+
 });
 
 // Шаг для нажатия по локатором, которые можно найти по содержащемуся в них тексту
@@ -119,24 +95,7 @@ When('Я нажимаю на {string} с текстом {string}', async functio
 // Ожидание появления/скрытия элемента для прохождения дальнейших шагов
 When('Я ожидаю, что {string} {string}', async function (element, activity) {
 
-    let locator
-    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
-    const projectSpecificKey2 = `${element} ${this.project}`;
-
-
-    if (element === 'Тестовое сообщение') {
-        locator = `//*[contains(text(), "${global.generatedMessage}")]`;
-    }
-    else if (pageObjects.locator[projectSpecificKey1]) {
-        locator = pageObjects.locator[projectSpecificKey1];
-    } else if (pageObjects.locator[projectSpecificKey2]) {
-        locator = pageObjects.locator[projectSpecificKey2];
-    } else if (pageObjects.locator[element]) {
-        locator = pageObjects.locator[element];
-    } else {
-        throw new Error(`Локатор не найден ни для "${projectSpecificKey1}", "${projectSpecificKey2}" ни для "${element}"`);
-    }
-
+    const locator = this.resolveLocator(element);
     const givenElement = this.page.locator(locator)
 
     if (activity === 'отображается') {
@@ -212,7 +171,7 @@ When('Я возвращаюсь на {string} вкладку', async function (c
 // Шаг для скролла в зону элемента 
 When('Я скроллю до {string}', async function (element) {
 
-    const locator = this.page.locator(pageObjects.locator[element]);
+    const locator = this.page.locator(this.resolveLocator(element));
     const count = await locator.count()
 
     if (count > 0) {
@@ -235,7 +194,7 @@ When('Я скроллю вниз', async function () {
 // Шаг для загрзуки файлов через системное окно 
 When('Я загружаю файл {string} в {string}', async function (filePath, element) {
 
-    const fileInput = this.page.locator(pageObjects.locator[element]);
+    const fileInput = this.page.locator(this.resolveLocator(element));
 
     await fileInput.setInputFiles(filePath);
 });
@@ -243,7 +202,7 @@ When('Я загружаю файл {string} в {string}', async function (filePa
 // Шаг для наведения курсора на элемент 
 When('Я навожу на {string}', async function (element) {
 
-    const locator = this.page.locator(pageObjects.locator[element]);
+    const locator = this.page.locator(this.resolveLocator(element));
 
     await locator.hover();
 
@@ -346,8 +305,7 @@ When('Я деактивирую {string}', async function (elementName) {
 // Шаг для ввода в input указанного значения в шаге 
 When('Я ввожу в {string} {string}', async function (element, initValue) {
 
-    const locator = pageObjects.locator[element];
-    const input = this.page.locator(locator);
+    const input = this.page.locator(this.resolveLocator(element));
 
     let givenValue;
 
@@ -374,8 +332,7 @@ When('Я ввожу в {string} {string}', async function (element, initValue) {
 // Нажатие на элемент админки (сделан из за не самой очевидной реализации элемента)
 When('Я жму на {string}', async function (element) {
 
-    const locator = pageObjects.locator[element];
-    const button = this.page.locator(locator);
+    const button = this.page.locator(this.resolveLocator(element));
 
     const ariaDisabled = await button.getAttribute('aria-disabled');
     const Disabled = await button.getAttribute('disabled');

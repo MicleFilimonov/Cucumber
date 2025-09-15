@@ -95,6 +95,7 @@ class World {
     return this.generatedMessage;
   }
 
+  // Создание слушателей, которые собирают логи
   attachPageListeners(page) {
 
     if (!page) return
@@ -125,6 +126,40 @@ class World {
     });
   }
 
+  // Функция, которая находит нужный локатор для передачи в шаг
+  resolveLocator(element) {
+    // Пробуем найти локатор с указанием проекта (например: "Меню поддержки LEGZO")
+    const projectSpecificKey1 = `${element} ${this.project} ${this.env}`;
+    const projectSpecificKey2 = `${element} ${this.project}`;
+
+    // Генерация локатора - присвоение переменной локатор нужного значения в зависимости от условий
+    /*
+    Суть кода - в случае, если система подключается к хабу объектов и ищет 
+    локатор по совпадению 
+    - сперва по названию + проект + окружение 
+    - затем по названию + проект 
+    - и последнее непосредственно по названию элемента 
+ 
+    Так как верстка подразумевает под собой тестирование общего элемента, а на наших 
+    системах названия элементов отвязаны от кластера, поэтому в этом шаге кластер можно не 
+    учитывать 
+    */
+    if (element === 'Тестовое сообщение') {
+      return `//*[contains(text(), "${global.generatedMessage}")]`;
+    } else if (pageObjects.locator[projectSpecificKey1]) {
+      return pageObjects.locator[projectSpecificKey1];
+    } else if (pageObjects.locator[projectSpecificKey2]) {
+      return pageObjects.locator[projectSpecificKey2];
+    } else if (pageObjects.locator[element]) {
+      return pageObjects.locator[element];
+    } else {
+      throw new Error(
+        `Локатор не найден ни для "${projectSpecificKey1}", 
+        ни для "${projectSpecificKey2}", 
+        ни для "${element}"`
+      );
+    }
+  }
 }
 
 
