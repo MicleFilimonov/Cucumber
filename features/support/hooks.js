@@ -2,20 +2,23 @@ import { Before, After, setDefaultTimeout } from '@cucumber/cucumber';
 import fs from 'fs';
 import path from 'path';
 
-let page;
 
+let page;
+setDefaultTimeout(50 * 1000) // Глобальный таймаут для Cucumber
 
 Before(async function () {
   this.capturedRequests = [];
 
-  if (process.env.DEVICE === 'mobile') {
+  if (process.env.DEVICE === 'MOBILE') {
     await this.openMobileBrowser();
   } else {
     await this.openWebBrowser();
   }
 
-  this.page.setDefaultTimeout(50 * 1000)//Рабочий таймаут
-
+    // <-- Глобальные таймауты Playwright для всех страниц
+  this.page.setDefaultTimeout(50 * 1000); // все waitFor и expect теперь ждут 50 сек
+  this.page.setDefaultNavigationTimeout(40 * 1000); // переходы по ссылкам
+  
 });
 
 

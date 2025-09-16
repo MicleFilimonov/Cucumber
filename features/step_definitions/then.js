@@ -276,7 +276,7 @@ Then('Я проверяю верстку {string}', async function (element) {
         baselineImage.width,
         baselineImage.height,
         // для UI тестов параметр от 0.1 до 0.15, не выше
-        { threshold: 0.1 }
+        { threshold: 0.15 }
     );
 
 

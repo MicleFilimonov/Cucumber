@@ -2,7 +2,7 @@ import { setWorldConstructor } from '@cucumber/cucumber';
 import { devices, chromium } from 'playwright';
 import { pageObjects } from '../../page_objects/pageObjects.js';
 
-const isMobile = process.env.DEVICE === 'mobile';
+const isMobile = process.env.DEVICE === 'MOBILE';
 const mobileDevice = devices['iPhone 13 Pro'];
 
 class World {
@@ -21,7 +21,7 @@ class World {
     this.attach = attach; // Определение прикрепленных файлов для отчета
     this.project = (process.env.PROJECT || '').toUpperCase();//переменная проекта для скрипта запуска
     this.env = (process.env.ENV || '').toUpperCase();//переменная окружения для скрипта запуска
-    this.device = (process.env.DEVICE || 'web').toLowerCase();//переменная устройства для скрипта запуска
+    this.device = (process.env.DEVICE || 'WEB').toLowerCase();//переменная устройства для скрипта запуска
     this.cluster = (process.env.CLUSTER || 'MBSS').toUpperCase();//переменная кластера для скрипта запуска
     this.currentBaseline = null;  // путь эталона
     this.currentDiff = null;

@@ -10,7 +10,7 @@ Given('Я нахожусь на проекте', async function () {
   const siteUrl = pageObjects.url[siteName];
   // Если еще нет браузера, открываем новый
   if (!this.page) {
-    if (process.env.DEVICE === 'mobile') {
+    if (process.env.DEVICE === 'MOBILE') {
       await this.openMobileBrowser();
       await this.mobilePage.goto(siteUrl, { waitUntil: 'domcontentloaded' });
     } else {
@@ -31,7 +31,7 @@ Given('Я нахожусь на странице {string}', async function (loca
 
   // Если еще нет браузера, открываем новый
   if (!this.page) {
-    if (process.env.DEVICE === 'mobile') {
+    if (process.env.DEVICE === 'MOBILE') {
       await this.openMobileBrowser();
       await this.mobilePage.goto(siteUrl, { waitUntil: 'domcontentloaded' });
     } else {
@@ -52,7 +52,7 @@ Given('Я нахожусь на проекте без авторизации', a
   let baseUrl = siteUrl.split('/sign')[0];
   // Если еще нет браузера, открываем новый
   if (!this.page) {
-    if (process.env.DEVICE === 'mobile') {
+    if (process.env.DEVICE === 'MOBILE') {
       await this.openMobileBrowser();
       await this.mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
     } else {
