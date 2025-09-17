@@ -6,7 +6,7 @@ import { testScripts, projects, defaultEnv, defaultCluster, defaultDevice } from
 const args = process.argv.slice(2);
 
 let selectedProjects = [];
-let featureType = ''; // DEV или пусто
+let featureType = '';
 let device = defaultDevice.toUpperCase();
 let env = defaultEnv;
 let cluster = defaultCluster;
@@ -15,6 +15,7 @@ args.forEach(arg => {
     const argUpper = arg.toUpperCase();
 
     if (argUpper === 'DEV') featureType = 'DEV';
+    else if (argUpper === 'MSGR') featureType = 'MSGR';
     else if (arg.startsWith('DEVICE=')) device = arg.split('=')[1].toUpperCase();
     else if (arg.startsWith('ENV=')) env = arg.split('=')[1];
     else if (arg.startsWith('CLUSTER=')) cluster = arg.split('=')[1];
@@ -33,10 +34,10 @@ execSync(
 
 
 // ---------- Функция запуска ----------
-function runTests(type, dev) {
-    const featureFile = testScripts[type];
+function runTests(typeToRun, dev) {
+    const featureFile = testScripts[typeToRun];
 
-    console.log(`🚀 Запуск [${type}] для [${selectedProjects.join(', ')}], DEVICE=${dev}, ENV=${env}, CLUSTER=${cluster}`);
+    console.log(`🚀 Запуск [${typeToRun}] для [${selectedProjects.join(', ')}], DEVICE=${dev}, ENV=${env}, CLUSTER=${cluster}`);
 
     for (const project of selectedProjects) {
         try {
@@ -48,7 +49,7 @@ function runTests(type, dev) {
                 { stdio: 'inherit' }
             );
         } catch (err) {
-            console.error(`❌ Ошибка на ${project} ${dev} (${type})`);
+            console.error(`❌ Ошибка на ${project} ${dev} (${typeToRun})`);
         }
     }
 }
@@ -63,7 +64,16 @@ if (device === 'ALL') {
 
 // Запуск поочерёдно для каждого девайса
 for (const dev of devices) {
-    const typeToRun = featureType === 'DEV' ? 'DEV' : (dev === 'MOBILE' ? 'MOBILE' : 'WEB');
+    let typeToRun
+
+    if (featureType === 'DEV') {
+        typeToRun = 'DEV'
+    } else if (featureType === 'MSGR') {
+        typeToRun = 'MSGR'
+    }else if (featureType === 'MOBILE') {
+        typeToRun = 'MOBILE'   
+    } else typeToRun = 'WEB'
+    // const typeToRun = featureType === 'DEV' ? 'DEV' : (dev === 'MOBILE' ? 'MOBILE' : 'WEB');
     console.log(`\n📱💻 Запуск тестов на ${dev}`);
     runTests(typeToRun, dev);
 }

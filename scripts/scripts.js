@@ -3,7 +3,7 @@ export const testScripts = {
   WEB: 'features/WEB.feature',
   MOBILE: 'features/MOBILE.feature',
   DEV: 'features/devFile.feature',
-  MSGR: 'featuers/MSGR.feature'
+  MSGR: 'features/MSGR.feature'
 };
 
 export const projects = [

@@ -63,9 +63,13 @@ export const url = {
         'Админка MBSS DEV': process.env.ADMIN_PANEL_DEV,
         'Админка MBSS STAGE': process.env.ADMIN_PANEL_STAGE,
         'Админка MBSS MASTER': process.env.ADMIN_PANEL_MASTER,
+
         'Админка TORUS DEV': process.env.ADMIN_PANEL_TORUS_DEV,
         'Админка TORUS STAGE': process.env.ADMIN_PANEL_TORUS_STAGE,
-        'Админка TORUS MASTER': process.env.ADMIN_PANEL_TORUS_MASTER
+        'Админка TORUS MASTER': process.env.ADMIN_PANEL_TORUS_MASTER,
+        
+        'Админка MSGR DEV': process.env.ADMIN_PANEL_MSGR_DEV,
+        'Админка MSGR MASTER': process.env.ADMIN_PANEL_MSGR_MASTER
 };
 
 
