@@ -5,6 +5,7 @@ import { value } from './values.js'
 import { siteLocator } from './sitePageLocators.js'
 import { url } from './urls.js'
 import { adminLocator } from './adminLocators.js'
+import { messengerLocator } from './messengerLocators.js';
 
 export const pageObjects = {
     /* 
@@ -14,7 +15,8 @@ export const pageObjects = {
     locator: {
         ...mbssLocator,
         ...siteLocator,
-        ...adminLocator
+        ...adminLocator,
+        ...messengerLocator
     },
     value: {
         ...value

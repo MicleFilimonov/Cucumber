@@ -6,11 +6,11 @@
     "test": "tests"
   },
   "type": "module",
-  "scripts": {    
+  "scripts": {
     "report": "node generateReport.js",
     "clean:artifacts": "rimraf --glob visual-baseline/*-diff.png visual-baseline/*-current.png reports/*.json reports/html reports/*.html reports/screenshots \"screenshots/*\"",
     "generate-report-in-file": "node reportForTeam.js",
-
+    
     "test": "node scripts/runner.js"
   },
   "author": "",
@@ -26,8 +26,6 @@
   },
   "devDependencies": {
     "@cucumber/cucumber": "^11.1.1",
-    "allure-cucumberjs": "^3.3.2",
-    "allure-playwright": "^3.3.2",
     "cross-env": "^7.0.3",
     "cucumber-html-reporter": "^6.0.0",
     "inline-source": "^8.0.3",
