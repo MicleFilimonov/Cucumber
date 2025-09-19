@@ -49,7 +49,12 @@ Given('Я нахожусь на проекте без авторизации', a
 
   const siteName = `${this.project} ${this.env}`;
   const siteUrl = pageObjects.url[siteName];
-  let baseUrl = siteUrl.split('/sign')[0];
+  const accessKey = '/access-key?key=165783214'
+  let baseUrl
+  if (this.project === 'ROX' || this.project === 'VOLNA') {
+    baseUrl = siteUrl.split('/sign')[0] + accessKey;
+  } else baseUrl = siteUrl.split('/sign')[0];
+
   // Если еще нет браузера, открываем новый
   if (!this.page) {
     if (process.env.DEVICE === 'MOBILE') {

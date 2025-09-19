@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
+import sharp from 'sharp';
 
 // вижу или не вижу какой то элемент 
 Then('Я {string} {string}', async function (activity, element) {
@@ -14,12 +15,10 @@ Then('Я {string} {string}', async function (activity, element) {
 
     if (activity === 'не вижу') {
         await expect(givenElement).not.toBeVisible();
+
     } else if (activity === "вижу") {
         await expect(givenElement).toBeVisible();
-
-        const box = await givenElement.boundingBox();
-        expect(box?.width).toBeGreaterThan(0);
-        expect(box?.height).toBeGreaterThan(0);
+        await givenElement.hover({ timeout: 5000 });
     }
 })
 
@@ -38,17 +37,11 @@ Then('Я {string} {string} и {string}', async function (activity, element1, ele
     } else if (activity === "вижу") {
         await expect(givenElement1).toBeVisible();
         await expect(givenElement2).toBeVisible();
+        await expect(givenElement1).toBeEnabled();
+        await expect(givenElement2).toBeEnabled();
+        await givenElement1.hover({ timeout: 5000 });
+        await givenElement2.hover({ timeout: 5000 });
 
-        const box1 = await givenElement1.boundingBox();
-        const box2 = await givenElement2.boundingBox();
-
-        if (!box1 || !box2) {
-            throw new Error('Один из элементов не имеет размеров в пикселях')
-        }
-        expect(box1?.width).toBeGreaterThan(0);
-        expect(box2?.width).toBeGreaterThan(0);
-        expect(box1?.height).toBeGreaterThan(0);
-        expect(box2?.height).toBeGreaterThan(0);
     }
 })
 
@@ -203,6 +196,7 @@ Then('Я проверяю верстку {string}', async function (element) {
     //Складываем полученный элемент в переменную, к которой будем обращаться в дальнейшем
     const givenElement = this.page.locator(locator)
 
+    await expect(givenElement).toBeVisible();
     /*
     Далее складываем путь к папке, в которой будут сохраняться эталоны при необходимости 
     и скриншоты для сравнения при тестировании 
@@ -221,8 +215,33 @@ Then('Я проверяю верстку {string}', async function (element) {
     - разрешение .png
     */
     const screenshotPath = path.join(baselineDir, `${element} ${this.project} ${this.env} ${this.device}.png`);
+
     // Складываем в переменную текущий скриншот, сделанный с помощью команды screenshot()
-    const currentImage = await givenElement.screenshot();
+    let currentImage
+    if (this.device === 'MOBILE') {
+        currentImage = await givenElement.screenshot()
+    } else if (this.device === 'WEB') {
+        const box = await givenElement.boundingBox();
+        if (!box) {
+            throw new Error(`Элемент "${element}" не имеет размеров.`);
+        }
+
+        // Делаем скриншот всей страницы
+        const fullPageImage = await this.page.screenshot();
+        // Обрезаем скриншот с помощью Sharp, используя точные координаты
+        currentImage = await sharp(fullPageImage)
+            .extract({
+                left: Math.round(box.x),
+                top: Math.round(box.y),
+                width: Math.round(box.width),
+                height: Math.round(box.height)
+            })
+            .toBuffer();
+    }
+    // Получаем точные координаты элемента
+
+
+
     /* 
     Условие говорит о том, что если скриншот c таким имененм отсутствует, 
     или явно было запрошено обновить эталоны, то мы сохраняем скриншот без сравнения 

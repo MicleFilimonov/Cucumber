@@ -21,7 +21,7 @@ class World {
     this.attach = attach; // Определение прикрепленных файлов для отчета
     this.project = (process.env.PROJECT || '').toUpperCase();//переменная проекта для скрипта запуска
     this.env = (process.env.ENV || '').toUpperCase();//переменная окружения для скрипта запуска
-    this.device = (process.env.DEVICE || 'WEB').toLowerCase();//переменная устройства для скрипта запуска
+    this.device = (process.env.DEVICE || 'WEB');//переменная устройства для скрипта запуска
     this.cluster = (process.env.CLUSTER || 'MBSS').toUpperCase();//переменная кластера для скрипта запуска
     this.currentBaseline = null;  // путь эталона
     this.currentDiff = null;
@@ -40,14 +40,14 @@ class World {
     this.mobilePage = await this.mobileContext.newPage();
     this.page = this.mobilePage;
     this.attachPageListeners(this.mobilePage); // подкдючение листенеров для снятия данных
-
+    await this.page.setViewportSize(mobileDevice.viewport); 
   }
 
   // Инициализация бразуера в разрешении 1366х768
   async openWebBrowser() {
     this.desktopBrowser = await chromium.launch({ headless: false });
     this.desktopContext = await this.desktopBrowser.newContext({
-      viewport: { width: 1366, height: 768 }
+      viewport: { width: 1920, height: 1080 }
     });
     this.desktopPage = await this.desktopContext.newPage();
     this.page = this.desktopPage;
@@ -134,17 +134,17 @@ class World {
     const projectSpecificKey2 = `${element} ${this.project}`;
 
     // Генерация локатора - присвоение переменной локатор нужного значения в зависимости от условий
-        /*
-        Суть кода - в случае, если система подключается к хабу объектов и ищет 
-        локатор по совпадению 
-        - сперва по названию + проект + окружение 
-        - затем по названию + проект 
-        - и последнее непосредственно по названию элемента 
-    
-        Так как верстка подразумевает под собой тестирование общего элемента, а на наших 
-        системах названия элементов отвязаны от кластера, поэтому в этом шаге кластер можно не 
-        учитывать 
-        */
+    /*
+    Суть кода - в случае, если система подключается к хабу объектов и ищет 
+    локатор по совпадению 
+    - сперва по названию + проект + окружение 
+    - затем по названию + проект 
+    - и последнее непосредственно по названию элемента 
+ 
+    Так как верстка подразумевает под собой тестирование общего элемента, а на наших 
+    системах названия элементов отвязаны от кластера, поэтому в этом шаге кластер можно не 
+    учитывать 
+    */
     if (element === 'Тестовое сообщение') {
       return `//*[contains(text(), "${global.generatedMessage}")]`;
     } else if (pageObjects.locator[projectSpecificKey1]) {
